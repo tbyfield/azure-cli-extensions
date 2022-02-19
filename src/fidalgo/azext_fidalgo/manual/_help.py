@@ -288,8 +288,8 @@ helps['fidalgo admin dev-center create'] = """
       - name: DevCenters_CreateWithUserIdentity
         text: |-
                az fidalgo admin dev-center create --identity-type "UserAssigned" --user-assigned-identities \
-"{\\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/identityGroup/providers/Microsoft.ManagedIdenti\
-ty/userAssignedIdentities/testidentity1\\":{}}" --location "centralus" --tags CostCode="12345" --name "Contoso" \
+"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/identityGroup/providers/Microsoft.ManagedIdenti\
+ty/userAssignedIdentities/testidentity1" --location "centralus" --tags CostCode="12345" --name "Contoso" \
 --resource-group "rg1"
 """
 

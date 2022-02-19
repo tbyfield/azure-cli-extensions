@@ -35,7 +35,7 @@ def fidalgo_dev_center_create(client,
                               location,
                               tags=None,
                               identity_type="SystemAssigned",
-                              user_assigned_identities=None,
+                              user_assigned_identity=None,
                               no_wait=False):
     body = {}
     if tags is not None:
@@ -44,8 +44,8 @@ def fidalgo_dev_center_create(client,
     body['identity'] = {}
     if identity_type is not None:
         body['identity']['type'] = identity_type
-    if user_assigned_identities is not None:
-        body['identity']['user_assigned_identities'] = user_assigned_identities
+    if user_assigned_identity is not None:
+        body['identity']['user_assigned_identities'] = "{\"" + user_assigned_identity + "\":{}}"
     if len(body['identity']) == 0:
         del body['identity']
     return sdk_no_wait(no_wait,
