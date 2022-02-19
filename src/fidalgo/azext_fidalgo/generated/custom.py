@@ -34,7 +34,7 @@ def fidalgo_dev_center_create(client,
                               dev_center_name,
                               location,
                               tags=None,
-                              type_=None,
+                              identity_type="SystemAssigned",
                               user_assigned_identities=None,
                               no_wait=False):
     body = {}
@@ -42,8 +42,8 @@ def fidalgo_dev_center_create(client,
         body['tags'] = tags
     body['location'] = location
     body['identity'] = {}
-    if type_ is not None:
-        body['identity']['type'] = type_
+    if identity_type is not None:
+        body['identity']['type'] = identity_type
     if user_assigned_identities is not None:
         body['identity']['user_assigned_identities'] = user_assigned_identities
     if len(body['identity']) == 0:
@@ -60,7 +60,7 @@ def fidalgo_dev_center_update(client,
                               dev_center_name,
                               tags=None,
                               location=None,
-                              type_=None,
+                              identity_type=None,
                               user_assigned_identities=None,
                               no_wait=False):
     body = {}
@@ -69,8 +69,8 @@ def fidalgo_dev_center_update(client,
     if location is not None:
         body['location'] = location
     body['identity'] = {}
-    if type_ is not None:
-        body['identity']['type'] = type_
+    if identity_type is not None:
+        body['identity']['type'] = identity_type
     if user_assigned_identities is not None:
         body['identity']['user_assigned_identities'] = user_assigned_identities
     if len(body['identity']) == 0:
@@ -733,7 +733,7 @@ def fidalgo_pool_create(client,
                         tags=None,
                         machine_definition_id=None,
                         network_settings_id=None,
-                        name=None,
+                        sku_name=None,
                         no_wait=False):
     body = {}
     if tags is not None:
@@ -744,8 +744,8 @@ def fidalgo_pool_create(client,
     if network_settings_id is not None:
         body['network_settings_id'] = network_settings_id
     body['sku'] = {}
-    if name is not None:
-        body['sku']['name'] = name
+    if sku_name is not None:
+        body['sku']['name'] = sku_name
     if len(body['sku']) == 0:
         del body['sku']
     return sdk_no_wait(no_wait,
@@ -764,7 +764,7 @@ def fidalgo_pool_update(client,
                         location=None,
                         machine_definition_id=None,
                         network_settings_id=None,
-                        name=None,
+                        sku_name=None,
                         no_wait=False):
     body = {}
     if tags is not None:
@@ -776,8 +776,8 @@ def fidalgo_pool_update(client,
     if network_settings_id is not None:
         body['network_settings_id'] = network_settings_id
     body['sku'] = {}
-    if name is not None:
-        body['sku']['name'] = name
+    if sku_name is not None:
+        body['sku']['name'] = sku_name
     if len(body['sku']) == 0:
         del body['sku']
     return sdk_no_wait(no_wait,

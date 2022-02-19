@@ -18,7 +18,7 @@ from azure.cli.core.commands.validators import (
 from azext_fidalgo.action import (
     AddParameters,
     AddGitHub,
-    AddSku,
+    #AddSku,
     AddImageReference
 )
 
@@ -227,11 +227,11 @@ def load_arguments(self, _):
         c.argument('tags', tags_type)
         c.argument('location', arg_type=get_location_type(self.cli_ctx), required=False,
                    validator=get_default_location_from_resource_group)
-        c.argument('type_', options_list=['--type'], arg_type=get_enum_type(['SystemAssigned', 'UserAssigned',
+        c.argument('identity_type', arg_type=get_enum_type(['SystemAssigned', 'UserAssigned',
                                                                              'SystemAssigned, UserAssigned', 'None']),
                    help='The type of identity used for the resource. The type \'SystemAssigned, UserAssigned\' '
                    'includes both an implicitly created identity and a user assigned identity. The type \'None\' will '
-                   'remove any identities from the resource.', arg_group='Identity')
+                   'remove any identities from the resource.', required=False, arg_group='Identity')
         c.argument('user_assigned_identities', type=validate_file_or_dict, help='The list of user identities '
                    'associated with the resource. The user identity dictionary key references will be ARM resource ids '
                    'in the form: \'/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microso'
@@ -245,11 +245,11 @@ def load_arguments(self, _):
         c.argument('tags', tags_type)
         c.argument('location', arg_type=get_location_type(self.cli_ctx), required=False,
                    validator=get_default_location_from_resource_group)
-        c.argument('type_', options_list=['--type'], arg_type=get_enum_type(['SystemAssigned', 'UserAssigned',
+        c.argument('identity_type', arg_type=get_enum_type(['SystemAssigned', 'UserAssigned',
                                                                              'SystemAssigned, UserAssigned', 'None']),
                    help='The type of identity used for the resource. The type \'SystemAssigned, UserAssigned\' '
                    'includes both an implicitly created identity and a user assigned identity. The type \'None\' will '
-                   'remove any identities from the resource.', arg_group='Identity')
+                   'remove any identities from the resource.', required=False, arg_group='Identity')
         c.argument('user_assigned_identities', type=validate_file_or_dict, help='The list of user identities '
                    'associated with the resource. The user identity dictionary key references will be ARM resource ids '
                    'in the form: \'/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microso'
@@ -605,10 +605,11 @@ def load_arguments(self, _):
         c.argument('tags', tags_type)
         c.argument('location', arg_type=get_location_type(self.cli_ctx), required=False,
                    validator=get_default_location_from_resource_group)
-        c.argument('sku', action=AddSku, nargs='+', help='The SKU for the virtual machine. Defines the type of virtual '
-                   'machines used in the pool.')
+        #c.argument('sku', action=AddSku, nargs='+', help='The SKU for the virtual machine. Defines the type of virtual '
+        #           'machines used in the pool.')
         c.argument('machine_definition_id', type=str, help='Resource Id of a Machine Definition')
         c.argument('network_settings_id', type=str, help='Resource Id of a Network Settings resource')
+        c.argument('sku_name', type=str, help='The name of the SKU.', arg_group='Sku')
 
     with self.argument_context('fidalgo admin pool update') as c:
         c.argument('resource_group_name', resource_group_name_type)
@@ -618,10 +619,11 @@ def load_arguments(self, _):
         c.argument('tags', tags_type)
         c.argument('location', arg_type=get_location_type(self.cli_ctx), required=False,
                    validator=get_default_location_from_resource_group)
-        c.argument('sku', action=AddSku, nargs='+', help='The SKU for the virtual machine. Defines the type of virtual '
-                   'machines used in the pool.')
+        #c.argument('sku', action=AddSku, nargs='+', help='The SKU for the virtual machine. Defines the type of virtual '
+        #           'machines used in the pool.')
         c.argument('machine_definition_id', type=str, help='Resource Id of a Machine Definition')
         c.argument('network_settings_id', type=str, help='Resource Id of a Network Settings resource')
+        c.argument('sku_name', type=str, help='The name of the SKU.', arg_group='Sku')
 
     with self.argument_context('fidalgo admin pool delete') as c:
         c.argument('resource_group_name', resource_group_name_type)
