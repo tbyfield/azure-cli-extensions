@@ -457,6 +457,33 @@ def load_arguments(self, _):
         c.argument('catalog_item_name', options_list=['--name', '-n', '--catalog-item-name'], type=str, help='The name '
                    'of the catalog item.', id_part='child_name_2')
 
+    with self.argument_context('fidalgo admin gallery list') as c:
+        c.argument('resource_group_name', resource_group_name_type)
+        c.argument('dev_center_name', type=str, help='The name of the devcenter.')
+        c.argument('top', type=int, help='The maximum number of resources to return from the operation. Example: '
+                   '\'$top=10\'.')
+
+    with self.argument_context('fidalgo admin gallery show') as c:
+        c.argument('resource_group_name', resource_group_name_type)
+        c.argument('dev_center_name', type=str, help='The name of the devcenter.', id_part='name')
+        c.argument('gallery_name', options_list=['--name', '-n', '--gallery-name'], type=str, help='The name of the '
+                   'gallery.', id_part='child_name_1')
+
+    with self.argument_context('fidalgo admin gallery create') as c:
+        c.argument('resource_group_name', resource_group_name_type)
+        c.argument('dev_center_name', type=str, help='The name of the devcenter.')
+        c.argument('gallery_name', options_list=['--name', '-n', '--gallery-name'], type=str, help='The name of the '
+                   'gallery.')
+        c.argument('gallery_resource_id', type=str, help='The resource ID of the backing Azure Compute Gallery.')
+
+    with self.argument_context('fidalgo admin gallery update') as c:
+        c.argument('resource_group_name', resource_group_name_type)
+        c.argument('dev_center_name', type=str, help='The name of the devcenter.', id_part='name')
+        c.argument('gallery_name', options_list=['--name', '-n', '--gallery-name'], type=str, help='The name of the '
+                   'gallery.', id_part='child_name_1')
+        c.argument('gallery_resource_id', type=str, help='The resource ID of the backing Azure Compute Gallery.')
+        c.ignore('body')
+
     with self.argument_context('fidalgo admin gallery delete') as c:
         c.argument('resource_group_name', resource_group_name_type)
         c.argument('dev_center_name', type=str, help='The name of the devcenter.', id_part='name')
