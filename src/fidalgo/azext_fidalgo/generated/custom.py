@@ -8,6 +8,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 # pylint: disable=too-many-lines
+# pylint: disable=unused-argument
 
 from azure.cli.core.util import sdk_no_wait
 
@@ -440,6 +441,114 @@ def fidalgo_catalog_item_delete(client,
                          catalog_item_name=catalog_item_name)
 
 
+def fidalgo_gallery_list(client,
+                         resource_group_name,
+                         dev_center_name,
+                         top=None):
+    return client.list_by_dev_center(resource_group_name=resource_group_name,
+                                     dev_center_name=dev_center_name,
+                                     top=top)
+
+
+def fidalgo_gallery_show(client,
+                         resource_group_name,
+                         dev_center_name,
+                         gallery_name):
+    return client.get(resource_group_name=resource_group_name,
+                      dev_center_name=dev_center_name,
+                      gallery_name=gallery_name)
+
+
+def fidalgo_gallery_create(client,
+                           resource_group_name,
+                           dev_center_name,
+                           gallery_name,
+                           gallery_resource_id=None,
+                           no_wait=False):
+    body = {}
+    if gallery_resource_id is not None:
+        body['gallery_resource_id'] = gallery_resource_id
+    return sdk_no_wait(no_wait,
+                       client.begin_create_or_update,
+                       resource_group_name=resource_group_name,
+                       dev_center_name=dev_center_name,
+                       gallery_name=gallery_name,
+                       body=body)
+
+
+def fidalgo_gallery_update(instance,
+                           resource_group_name,
+                           dev_center_name,
+                           gallery_name,
+                           gallery_resource_id=None,
+                           no_wait=False):
+    if gallery_resource_id is not None:
+        instance.gallery_resource_id = gallery_resource_id
+    return instance
+
+
+def fidalgo_gallery_delete(client,
+                           resource_group_name,
+                           dev_center_name,
+                           gallery_name,
+                           no_wait=False):
+    return sdk_no_wait(no_wait,
+                       client.begin_delete,
+                       resource_group_name=resource_group_name,
+                       dev_center_name=dev_center_name,
+                       gallery_name=gallery_name)
+
+
+def fidalgo_image_list(client,
+                       resource_group_name,
+                       dev_center_name,
+                       gallery_name=None,
+                       top=None):
+    if resource_group_name and dev_center_name is not None and gallery_name is not None:
+        return client.list_by_gallery(resource_group_name=resource_group_name,
+                                      dev_center_name=dev_center_name,
+                                      gallery_name=gallery_name,
+                                      top=top)
+    return client.list_by_dev_center(resource_group_name=resource_group_name,
+                                     dev_center_name=dev_center_name,
+                                     top=top)
+
+
+def fidalgo_image_show(client,
+                       resource_group_name,
+                       dev_center_name,
+                       gallery_name,
+                       image_name):
+    return client.get(resource_group_name=resource_group_name,
+                      dev_center_name=dev_center_name,
+                      gallery_name=gallery_name,
+                      image_name=image_name)
+
+
+def fidalgo_image_version_list(client,
+                               resource_group_name,
+                               dev_center_name,
+                               gallery_name,
+                               image_name):
+    return client.list_by_image(resource_group_name=resource_group_name,
+                                dev_center_name=dev_center_name,
+                                gallery_name=gallery_name,
+                                image_name=image_name)
+
+
+def fidalgo_image_version_show(client,
+                               resource_group_name,
+                               dev_center_name,
+                               gallery_name,
+                               image_name,
+                               version_name):
+    return client.get(resource_group_name=resource_group_name,
+                      dev_center_name=dev_center_name,
+                      gallery_name=gallery_name,
+                      image_name=image_name,
+                      version_name=version_name)
+
+
 def fidalgo_catalog_list(client,
                          resource_group_name,
                          dev_center_name,
@@ -622,20 +731,23 @@ def fidalgo_pool_create(client,
                         pool_name,
                         location,
                         tags=None,
-                        sku=None,
                         machine_definition_id=None,
                         network_settings_id=None,
+                        name=None,
                         no_wait=False):
     body = {}
     if tags is not None:
         body['tags'] = tags
     body['location'] = location
-    if sku is not None:
-        body['sku'] = sku
     if machine_definition_id is not None:
         body['machine_definition_id'] = machine_definition_id
     if network_settings_id is not None:
         body['network_settings_id'] = network_settings_id
+    body['sku'] = {}
+    if name is not None:
+        body['sku']['name'] = name
+    if len(body['sku']) == 0:
+        del body['sku']
     return sdk_no_wait(no_wait,
                        client.begin_create_or_update,
                        resource_group_name=resource_group_name,
@@ -650,21 +762,24 @@ def fidalgo_pool_update(client,
                         pool_name,
                         tags=None,
                         location=None,
-                        sku=None,
                         machine_definition_id=None,
                         network_settings_id=None,
+                        name=None,
                         no_wait=False):
     body = {}
     if tags is not None:
         body['tags'] = tags
     if location is not None:
         body['location'] = location
-    if sku is not None:
-        body['sku'] = sku
     if machine_definition_id is not None:
         body['machine_definition_id'] = machine_definition_id
     if network_settings_id is not None:
         body['network_settings_id'] = network_settings_id
+    body['sku'] = {}
+    if name is not None:
+        body['sku']['name'] = name
+    if len(body['sku']) == 0:
+        del body['sku']
     return sdk_no_wait(no_wait,
                        client.begin_update,
                        resource_group_name=resource_group_name,
@@ -847,6 +962,15 @@ def fidalgo_network_setting_delete(client,
                        client.begin_delete,
                        resource_group_name=resource_group_name,
                        network_setting_name=network_setting_name)
+
+
+def fidalgo_network_setting_list_health_detail(client,
+                                               resource_group_name,
+                                               network_setting_name,
+                                               top=None):
+    return client.list_health_details(resource_group_name=resource_group_name,
+                                      top=top,
+                                      network_setting_name=network_setting_name)
 
 
 def fidalgo_network_setting_show_health_detail(client,
