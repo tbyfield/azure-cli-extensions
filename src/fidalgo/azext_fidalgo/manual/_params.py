@@ -231,7 +231,7 @@ def load_arguments(self, _):
                    help='The type of identity used for the resource. The type \'SystemAssigned, UserAssigned\' '
                    'includes both an implicitly created identity and a user assigned identity. The type \'None\' will '
                    'remove any identities from the resource.', required=False, arg_group='Identity')
-        c.argument('user_assigned_identity', type=validate_file_or_dict, help='The user identity '
+        c.argument('user_assigned_identity', type=str, help='The user identity '
                    'associated with the resource. The user identity references will be an ARM resource id '
                    'in the form: \'/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microso'
                    'ft.ManagedIdentity/userAssignedIdentities/{identityName}\'. ', arg_group='Identity')
