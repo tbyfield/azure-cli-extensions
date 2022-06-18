@@ -30,7 +30,7 @@ class CatalogItemVersionsOperations(object):
     instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
-    :type models: ~dev_center.models
+    :type models: ~dev_center_dataplane_client.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
@@ -69,7 +69,7 @@ class CatalogItemVersionsOperations(object):
         :type top: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either CatalogItemVersionListResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~dev_center.models.CatalogItemVersionListResult]
+        :rtype: ~azure.core.paging.ItemPaged[~dev_center_dataplane_client.models.CatalogItemVersionListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.CatalogItemVersionListResult"]
@@ -166,7 +166,7 @@ class CatalogItemVersionsOperations(object):
         :type top: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CatalogItemVersion, or the result of cls(response)
-        :rtype: ~dev_center.models.CatalogItemVersion
+        :rtype: ~dev_center_dataplane_client.models.CatalogItemVersion
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.CatalogItemVersion"]

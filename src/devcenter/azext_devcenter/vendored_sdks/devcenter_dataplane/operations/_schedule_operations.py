@@ -30,7 +30,7 @@ class ScheduleOperations(object):
     instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
-    :type models: ~dev_center.models
+    :type models: ~dev_center_dataplane_client.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
@@ -72,7 +72,7 @@ class ScheduleOperations(object):
         :type filter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ScheduleListResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~dev_center.models.ScheduleListResult]
+        :rtype: ~azure.core.paging.ItemPaged[~dev_center_dataplane_client.models.ScheduleListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ScheduleListResult"]
@@ -168,7 +168,7 @@ class ScheduleOperations(object):
         :type dev_center_dns_suffix: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Schedule, or the result of cls(response)
-        :rtype: ~dev_center.models.Schedule
+        :rtype: ~dev_center_dataplane_client.models.Schedule
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Schedule"]

@@ -20,8 +20,8 @@ if TYPE_CHECKING:
 
 VERSION = "unknown"
 
-class DevCenterConfiguration(Configuration):
-    """Configuration for DevCenter.
+class DevCenterDataplaneClientConfiguration(Configuration):
+    """Configuration for DevCenterDataplaneClient.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
@@ -38,12 +38,12 @@ class DevCenterConfiguration(Configuration):
         # type: (...) -> None
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
-        super(DevCenterConfiguration, self).__init__(**kwargs)
+        super(DevCenterDataplaneClientConfiguration, self).__init__(**kwargs)
 
         self.credential = credential
         self.api_version = "2022-03-01-preview"
         self.credential_scopes = kwargs.pop('credential_scopes', ['https://management.azure.com/.default'])
-        kwargs.setdefault('sdk_moniker', 'devcenter/{}'.format(VERSION))
+        kwargs.setdefault('sdk_moniker', 'devcenterdataplaneclient/{}'.format(VERSION))
         self._configure(**kwargs)
 
     def _configure(

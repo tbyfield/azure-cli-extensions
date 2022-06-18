@@ -32,7 +32,7 @@ class ActionsOperations(object):
     instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
-    :type models: ~dev_center.models
+    :type models: ~dev_center_dataplane_client.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
@@ -75,7 +75,7 @@ class ActionsOperations(object):
         :type top: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ActionListResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~dev_center.models.ActionListResult]
+        :rtype: ~azure.core.paging.ItemPaged[~dev_center_dataplane_client.models.ActionListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ActionListResult"]
@@ -226,7 +226,7 @@ class ActionsOperations(object):
         :param environment_name: The name of the environment.
         :type environment_name: str
         :param action: Action properties overriding the environment's default values.
-        :type action: ~dev_center.models.ActionRequest
+        :type action: ~dev_center_dataplane_client.models.ActionRequest
         :param dev_center_dns_suffix: The DNS suffix used as the base for all devcenter requests.
         :type dev_center_dns_suffix: str
         :param user_id: The id of the user. If value is 'me', the identity is taken from the
@@ -318,7 +318,7 @@ class ActionsOperations(object):
         :type user_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Action, or the result of cls(response)
-        :rtype: ~dev_center.models.Action
+        :rtype: ~dev_center_dataplane_client.models.Action
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Action"]

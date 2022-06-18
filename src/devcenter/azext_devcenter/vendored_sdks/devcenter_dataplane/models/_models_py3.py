@@ -11,7 +11,7 @@ from typing import Dict, List, Optional, Union
 
 import msrest.serialization
 
-from ._dev_center_enums import *
+from ._dev_center_dataplane_client_enums import *
 
 
 class Action(msrest.serialization.Model):
@@ -27,7 +27,7 @@ class Action(msrest.serialization.Model):
     :vartype task_id: str
     :ivar type: The type of action to execute. Possible values include: "Custom", "Deploy",
      "Delete".
-    :vartype type: str or ~dev_center.models.ActionType
+    :vartype type: str or ~dev_center_dataplane_client.models.ActionType
     :ivar type_name: The name of the custom Action type.
     :vartype type_name: str
     :ivar created_time: Time the action was created.
@@ -42,7 +42,7 @@ class Action(msrest.serialization.Model):
     :vartype output: str
     :ivar action_state: The state of the action executiton. Possible values include: "Pending",
      "Initializing", "Processing", "Succeeded", "Canceled", "Failed".
-    :vartype action_state: str or ~dev_center.models.ActionState
+    :vartype action_state: str or ~dev_center_dataplane_client.models.ActionState
     :ivar exit_code: Exit code of the Action execution.
     :vartype exit_code: int
     """
@@ -104,7 +104,7 @@ class ActionListResult(msrest.serialization.Model):
     All required parameters must be populated in order to send to Azure.
 
     :ivar value: Required. Current page of results.
-    :vartype value: list[~dev_center.models.Action]
+    :vartype value: list[~dev_center_dataplane_client.models.Action]
     :ivar next_link: URL to get the next set of results if there are any.
     :vartype next_link: str
     """
@@ -223,7 +223,7 @@ class ArtifactListResult(msrest.serialization.Model):
     All required parameters must be populated in order to send to Azure.
 
     :ivar value: Required. Current page of results.
-    :vartype value: list[~dev_center.models.Artifact]
+    :vartype value: list[~dev_center_dataplane_client.models.Artifact]
     :ivar next_link: URL to get the next set of results if there are any.
     :vartype next_link: str
     """
@@ -296,9 +296,9 @@ class CatalogItemAction(msrest.serialization.Model):
     :ivar parameters_schema: JSON schema defining the parameters specific to the custom action.
     :vartype parameters_schema: str
     :ivar parameters: Input parameters passed to the action.
-    :vartype parameters: list[~dev_center.models.CatalogItemParameter]
+    :vartype parameters: list[~dev_center_dataplane_client.models.CatalogItemParameter]
     :ivar type: The action type. Possible values include: "Custom", "Deploy", "Delete".
-    :vartype type: str or ~dev_center.models.ActionType
+    :vartype type: str or ~dev_center_dataplane_client.models.ActionType
     :ivar type_name: Name of the custom action type.
     :vartype type_name: str
     :ivar runner: The container image to use to execute the action.
@@ -350,7 +350,7 @@ class CatalogItemListResult(msrest.serialization.Model):
     All required parameters must be populated in order to send to Azure.
 
     :ivar value: Required. Current page of results.
-    :vartype value: list[~dev_center.models.CatalogItem]
+    :vartype value: list[~dev_center_dataplane_client.models.CatalogItem]
     :ivar next_link: URL to get the next set of results if there are any.
     :vartype next_link: str
     """
@@ -390,7 +390,7 @@ class CatalogItemParameter(msrest.serialization.Model):
     :ivar type: A string of one of the basic JSON types (number, integer, null, array, object,
      boolean, string). Possible values include: "array", "boolean", "integer", "null", "number",
      "object", "string".
-    :vartype type: str or ~dev_center.models.ParameterType
+    :vartype type: str or ~dev_center_dataplane_client.models.ParameterType
     :ivar read_only: Whether or not this parameter is read-only.  If true, default should have a
      value.
     :vartype read_only: bool
@@ -459,14 +459,14 @@ class CatalogItemVersion(msrest.serialization.Model):
     :ivar parameters_schema: JSON schema defining the parameters object passed to actions.
     :vartype parameters_schema: str
     :ivar parameters: Input parameters passed to actions.
-    :vartype parameters: list[~dev_center.models.CatalogItemParameter]
+    :vartype parameters: list[~dev_center_dataplane_client.models.CatalogItemParameter]
     :ivar actions: Custom actions for the catalog item.
-    :vartype actions: list[~dev_center.models.CatalogItemAction]
+    :vartype actions: list[~dev_center_dataplane_client.models.CatalogItemAction]
     :ivar runner: The default container image to use to execute actions.
     :vartype runner: str
     :param status: Defines whether the specific catalogitem version can be used. Possible values
      include: "Enabled", "Disabled".
-    :type status: str or ~dev_center.models.EnableStatus
+    :type status: str or ~dev_center_dataplane_client.models.EnableStatus
     :param eligible_for_latest_version: Whether the version is eligable to be the latest version.
     :type eligible_for_latest_version: bool
     """
@@ -532,7 +532,7 @@ class CatalogItemVersionListResult(msrest.serialization.Model):
     All required parameters must be populated in order to send to Azure.
 
     :ivar value: Required. Current page of results.
-    :vartype value: list[~dev_center.models.CatalogItemVersion]
+    :vartype value: list[~dev_center_dataplane_client.models.CatalogItemVersion]
     :ivar next_link: URL to get the next set of results if there are any.
     :vartype next_link: str
     """
@@ -571,7 +571,7 @@ class CloudErrorBody(msrest.serialization.Model):
      error.
     :type target: str
     :param details: A list of additional details about the error.
-    :type details: list[~dev_center.models.CloudErrorBody]
+    :type details: list[~dev_center_dataplane_client.models.CloudErrorBody]
     """
 
     _validation = {
@@ -622,22 +622,22 @@ class DevBox(msrest.serialization.Model):
     :vartype action_state: str
     :ivar power_state: The current power state of the Dev Box. Possible values include: "Unknown",
      "Deallocated", "PoweredOff", "Running", "Hibernated".
-    :vartype power_state: str or ~dev_center.models.PowerState
+    :vartype power_state: str or ~dev_center_dataplane_client.models.PowerState
     :ivar error_details: Provisioning or action error details. Populated only for error states.
-    :vartype error_details: ~dev_center.models.ProvisioningError
+    :vartype error_details: ~dev_center_dataplane_client.models.ProvisioningError
     :ivar location: Azure region where this Dev Box is located. This will be the same region as the
      Virtual Network it is attached to.
     :vartype location: str
     :ivar os_type: The operating system type of this Dev Box. Possible values include: "Windows".
-    :vartype os_type: str or ~dev_center.models.OsType
+    :vartype os_type: str or ~dev_center_dataplane_client.models.OsType
     :ivar owner: User identifier of the user this vm is assigned to.
     :vartype owner: str
     :ivar hardware_profile: Information about the Dev Box's hardware resources.
-    :vartype hardware_profile: ~dev_center.models.HardwareProfile
+    :vartype hardware_profile: ~dev_center_dataplane_client.models.HardwareProfile
     :ivar storage_profile: Storage settings for this Dev Box.
-    :vartype storage_profile: ~dev_center.models.StorageProfile
+    :vartype storage_profile: ~dev_center_dataplane_client.models.StorageProfile
     :ivar image_reference: Information about the image used for this Dev Box.
-    :vartype image_reference: ~dev_center.models.ImageReference
+    :vartype image_reference: ~dev_center_dataplane_client.models.ImageReference
     :ivar created_time: Creation time of this Dev Box.
     :vartype created_time: ~datetime.datetime
     """
@@ -707,7 +707,7 @@ class DevBoxListResult(msrest.serialization.Model):
     All required parameters must be populated in order to send to Azure.
 
     :ivar value: Required. The list of DevBox Dev Boxes.
-    :vartype value: list[~dev_center.models.DevBox]
+    :vartype value: list[~dev_center_dataplane_client.models.DevBox]
     :ivar next_link: The URL to get the next set of results.
     :vartype next_link: str
     """
@@ -743,7 +743,7 @@ class EnvironmentUpdateProperties(msrest.serialization.Model):
     :param parameters: Parameters object for the deploy action.
     :type parameters: object
     :param scheduled_tasks: Set of supported scheduled tasks to help manage cost.
-    :type scheduled_tasks: dict[str, ~dev_center.models.ScheduledTask]
+    :type scheduled_tasks: dict[str, ~dev_center_dataplane_client.models.ScheduledTask]
     :param tags: A set of tags. Key value pairs that will be applied to resources deployed in this
      environment as tags.
     :type tags: dict[str, str]
@@ -794,7 +794,7 @@ class Environment(EnvironmentUpdateProperties):
     :param parameters: Parameters object for the deploy action.
     :type parameters: object
     :param scheduled_tasks: Set of supported scheduled tasks to help manage cost.
-    :type scheduled_tasks: dict[str, ~dev_center.models.ScheduledTask]
+    :type scheduled_tasks: dict[str, ~dev_center_dataplane_client.models.ScheduledTask]
     :param tags: A set of tags. Key value pairs that will be applied to resources deployed in this
      environment as tags.
     :type tags: dict[str, str]
@@ -861,7 +861,7 @@ class EnvironmentListResult(msrest.serialization.Model):
     All required parameters must be populated in order to send to Azure.
 
     :ivar value: Required. Current page of results.
-    :vartype value: list[~dev_center.models.Environment]
+    :vartype value: list[~dev_center_dataplane_client.models.Environment]
     :ivar next_link: URL to get the next set of results if there are any.
     :vartype next_link: str
     """
@@ -898,7 +898,7 @@ class EnvironmentType(msrest.serialization.Model):
     :vartype deployment_target_id: str
     :ivar status: Defines whether this Environment Type can be used in this Project. Possible
      values include: "Enabled", "Disabled".
-    :vartype status: str or ~dev_center.models.EnableStatus
+    :vartype status: str or ~dev_center_dataplane_client.models.EnableStatus
     """
 
     _validation = {
@@ -931,7 +931,7 @@ class EnvironmentTypeListResult(msrest.serialization.Model):
     All required parameters must be populated in order to send to Azure.
 
     :ivar value: Required. Current page of results.
-    :vartype value: list[~dev_center.models.EnvironmentType]
+    :vartype value: list[~dev_center_dataplane_client.models.EnvironmentType]
     :ivar next_link: URL to get the next set of results if there are any.
     :vartype next_link: str
     """
@@ -1061,13 +1061,13 @@ class Pool(msrest.serialization.Model):
     :vartype location: str
     :ivar os_type: The operating system type of Dev Boxes in this pool. Possible values include:
      "Windows".
-    :vartype os_type: str or ~dev_center.models.OsType
+    :vartype os_type: str or ~dev_center_dataplane_client.models.OsType
     :ivar hardware_profile: Hardware settings for the Dev Boxes created in this pool.
-    :vartype hardware_profile: ~dev_center.models.HardwareProfile
+    :vartype hardware_profile: ~dev_center_dataplane_client.models.HardwareProfile
     :ivar storage_profile: Storage settings for Dev Box created in this pool.
-    :vartype storage_profile: ~dev_center.models.StorageProfile
+    :vartype storage_profile: ~dev_center_dataplane_client.models.StorageProfile
     :ivar image_reference: Image settings for Dev Boxes create in this pool.
-    :vartype image_reference: ~dev_center.models.ImageReference
+    :vartype image_reference: ~dev_center_dataplane_client.models.ImageReference
     """
 
     _validation = {
@@ -1109,7 +1109,7 @@ class PoolListResult(msrest.serialization.Model):
     All required parameters must be populated in order to send to Azure.
 
     :ivar value: Required. Current page of results.
-    :vartype value: list[~dev_center.models.Pool]
+    :vartype value: list[~dev_center_dataplane_client.models.Pool]
     :ivar next_link: The URL to get the next set of results.
     :vartype next_link: str
     """
@@ -1171,7 +1171,7 @@ class ProjectListResult(msrest.serialization.Model):
     All required parameters must be populated in order to send to Azure.
 
     :ivar value: Required. Current page of results.
-    :vartype value: list[~dev_center.models.Project]
+    :vartype value: list[~dev_center_dataplane_client.models.Project]
     :ivar next_link: URL to get the next set of results if there are any.
     :vartype next_link: str
     """
@@ -1264,9 +1264,9 @@ class Schedule(msrest.serialization.Model):
     :vartype name: str
     :ivar type: Supported type this scheduled task represents. Possible values include:
      "StopDevBox".
-    :vartype type: str or ~dev_center.models.ScheduledType
+    :vartype type: str or ~dev_center_dataplane_client.models.ScheduledType
     :ivar frequency: The frequency of this scheduled task. Possible values include: "Daily".
-    :vartype frequency: str or ~dev_center.models.ScheduledFrequency
+    :vartype frequency: str or ~dev_center_dataplane_client.models.ScheduledFrequency
     :ivar time: The target time to trigger the action. The format is HH:MM.
     :vartype time: str
     :ivar time_zone: The IANA timezone id at which the schedule should execute.
@@ -1308,10 +1308,10 @@ class ScheduledTask(msrest.serialization.Model):
 
     :param type: Required. Supported type this scheduled task represents. Possible values include:
      "AutoExpire".
-    :type type: str or ~dev_center.models.ScheduledTaskType
+    :type type: str or ~dev_center_dataplane_client.models.ScheduledTaskType
     :param enabled: Indicates whether or not this scheduled task is enabled. Possible values
      include: "Enabled", "Disabled".
-    :type enabled: str or ~dev_center.models.EnableStatus
+    :type enabled: str or ~dev_center_dataplane_client.models.EnableStatus
     :param start_time: Required. Date/time by which the environment should expire.
     
      The start date and time in this format:
@@ -1365,7 +1365,7 @@ class ScheduleListResult(msrest.serialization.Model):
     All required parameters must be populated in order to send to Azure.
 
     :ivar value: Required. Current page of results.
-    :vartype value: list[~dev_center.models.Schedule]
+    :vartype value: list[~dev_center_dataplane_client.models.Schedule]
     :ivar next_link: The URL to get the next set of results.
     :vartype next_link: str
     """
@@ -1393,7 +1393,7 @@ class StorageProfile(msrest.serialization.Model):
     """Storage settings for the Dev Box's disks.
 
     :param os_disk: Settings for the operating system disk.
-    :type os_disk: ~dev_center.models.OsDisk
+    :type os_disk: ~dev_center_dataplane_client.models.OsDisk
     """
 
     _attribute_map = {

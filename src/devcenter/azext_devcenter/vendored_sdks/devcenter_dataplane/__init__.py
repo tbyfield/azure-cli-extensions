@@ -6,8 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._dev_center import DevCenter
-__all__ = ['DevCenter']
+from ._dev_center_dataplane_client import DevCenterDataplaneClient
+__all__ = ['DevCenterDataplaneClient']
 
 try:
     from ._patch import patch_sdk  # type: ignore

@@ -26,7 +26,7 @@ class ArtifactsOperations:
     instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
-    :type models: ~dev_center.models
+    :type models: ~dev_center_dataplane_client.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
@@ -65,7 +65,7 @@ class ArtifactsOperations:
         :type user_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ArtifactListResult or the result of cls(response)
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~dev_center.models.ArtifactListResult]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~dev_center_dataplane_client.models.ArtifactListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ArtifactListResult"]
@@ -162,7 +162,7 @@ class ArtifactsOperations:
         :type user_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ArtifactListResult or the result of cls(response)
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~dev_center.models.ArtifactListResult]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~dev_center_dataplane_client.models.ArtifactListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ArtifactListResult"]

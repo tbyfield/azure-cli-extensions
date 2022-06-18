@@ -26,7 +26,7 @@ class ProjectOperations:
     instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
-    :type models: ~dev_center.models
+    :type models: ~dev_center_dataplane_client.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
@@ -61,7 +61,7 @@ class ProjectOperations:
         :type top: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ProjectListResult or the result of cls(response)
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~dev_center.models.ProjectListResult]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~dev_center_dataplane_client.models.ProjectListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProjectListResult"]
@@ -146,7 +146,7 @@ class ProjectOperations:
         :type dev_center_dns_suffix: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Project, or the result of cls(response)
-        :rtype: ~dev_center.models.Project
+        :rtype: ~dev_center_dataplane_client.models.Project
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Project"]

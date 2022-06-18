@@ -73,7 +73,7 @@ except (SyntaxError, ImportError):
     from ._models import ScheduledTask  # type: ignore
     from ._models import StorageProfile  # type: ignore
 
-from ._dev_center_enums import (
+from ._dev_center_dataplane_client_enums import (
     ActionState,
     ActionType,
     EnableStatus,

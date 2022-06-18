@@ -28,7 +28,7 @@ class EnvironmentsOperations:
     instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
-    :type models: ~dev_center.models
+    :type models: ~dev_center_dataplane_client.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
@@ -63,7 +63,7 @@ class EnvironmentsOperations:
         :type top: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either EnvironmentListResult or the result of cls(response)
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~dev_center.models.EnvironmentListResult]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~dev_center_dataplane_client.models.EnvironmentListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.EnvironmentListResult"]
@@ -155,7 +155,7 @@ class EnvironmentsOperations:
         :type user_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either EnvironmentListResult or the result of cls(response)
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~dev_center.models.EnvironmentListResult]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~dev_center_dataplane_client.models.EnvironmentListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.EnvironmentListResult"]
@@ -249,7 +249,7 @@ class EnvironmentsOperations:
         :type user_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Environment, or the result of cls(response)
-        :rtype: ~dev_center.models.Environment
+        :rtype: ~dev_center_dataplane_client.models.Environment
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Environment"]
@@ -376,7 +376,7 @@ class EnvironmentsOperations:
         :param environment_name: The name of the environment.
         :type environment_name: str
         :param body: Represents a environment.
-        :type body: ~dev_center.models.Environment
+        :type body: ~dev_center_dataplane_client.models.Environment
         :param dev_center_dns_suffix: The DNS suffix used as the base for all devcenter requests.
         :type dev_center_dns_suffix: str
         :param user_id: The id of the user. If value is 'me', the identity is taken from the
@@ -389,7 +389,7 @@ class EnvironmentsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either Environment or the result of cls(response)
-        :rtype: ~azure.core.polling.AsyncLROPoller[~dev_center.models.Environment]
+        :rtype: ~azure.core.polling.AsyncLROPoller[~dev_center_dataplane_client.models.Environment]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -526,7 +526,7 @@ class EnvironmentsOperations:
         :param environment_name: The name of the environment.
         :type environment_name: str
         :param body: Updatable environment properties.
-        :type body: ~dev_center.models.EnvironmentUpdateProperties
+        :type body: ~dev_center_dataplane_client.models.EnvironmentUpdateProperties
         :param dev_center_dns_suffix: The DNS suffix used as the base for all devcenter requests.
         :type dev_center_dns_suffix: str
         :param user_id: The id of the user. If value is 'me', the identity is taken from the
@@ -539,7 +539,7 @@ class EnvironmentsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either Environment or the result of cls(response)
-        :rtype: ~azure.core.polling.AsyncLROPoller[~dev_center.models.Environment]
+        :rtype: ~azure.core.polling.AsyncLROPoller[~dev_center_dataplane_client.models.Environment]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]

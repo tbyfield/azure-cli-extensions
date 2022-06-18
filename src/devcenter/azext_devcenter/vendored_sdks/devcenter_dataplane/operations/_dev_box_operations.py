@@ -32,7 +32,7 @@ class DevBoxOperations(object):
     instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
-    :type models: ~dev_center.models
+    :type models: ~dev_center_dataplane_client.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
@@ -68,7 +68,7 @@ class DevBoxOperations(object):
         :type top: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either DevBoxListResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~dev_center.models.DevBoxListResult]
+        :rtype: ~azure.core.paging.ItemPaged[~dev_center_dataplane_client.models.DevBoxListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.DevBoxListResult"]
@@ -161,7 +161,7 @@ class DevBoxOperations(object):
         :type user_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either DevBoxListResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~dev_center.models.DevBoxListResult]
+        :rtype: ~azure.core.paging.ItemPaged[~dev_center_dataplane_client.models.DevBoxListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.DevBoxListResult"]
@@ -259,7 +259,7 @@ class DevBoxOperations(object):
         :type user_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either DevBoxListResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~dev_center.models.DevBoxListResult]
+        :rtype: ~azure.core.paging.ItemPaged[~dev_center_dataplane_client.models.DevBoxListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.DevBoxListResult"]
@@ -356,7 +356,7 @@ class DevBoxOperations(object):
         :type user_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: DevBox, or the result of cls(response)
-        :rtype: ~dev_center.models.DevBox
+        :rtype: ~dev_center_dataplane_client.models.DevBox
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.DevBox"]
@@ -481,7 +481,7 @@ class DevBoxOperations(object):
         :param dev_box_name: The name of a Dev Box.
         :type dev_box_name: str
         :param body: Represents a environment.
-        :type body: ~dev_center.models.DevBox
+        :type body: ~dev_center_dataplane_client.models.DevBox
         :param dev_center_dns_suffix: The DNS suffix used as the base for all devcenter requests.
         :type dev_center_dns_suffix: str
         :param user_id: The id of the user. If value is 'me', the identity is taken from the
@@ -494,7 +494,7 @@ class DevBoxOperations(object):
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
         :return: An instance of LROPoller that returns either DevBox or the result of cls(response)
-        :rtype: ~azure.core.polling.LROPoller[~dev_center.models.DevBox]
+        :rtype: ~azure.core.polling.LROPoller[~dev_center_dataplane_client.models.DevBox]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
@@ -973,7 +973,7 @@ class DevBoxOperations(object):
         :type user_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: RemoteConnection, or the result of cls(response)
-        :rtype: ~dev_center.models.RemoteConnection
+        :rtype: ~dev_center_dataplane_client.models.RemoteConnection
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.RemoteConnection"]

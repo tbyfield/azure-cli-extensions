@@ -26,7 +26,7 @@ class PoolOperations:
     instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
-    :type models: ~dev_center.models
+    :type models: ~dev_center_dataplane_client.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
@@ -64,7 +64,7 @@ class PoolOperations:
         :type filter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either PoolListResult or the result of cls(response)
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~dev_center.models.PoolListResult]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~dev_center_dataplane_client.models.PoolListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.PoolListResult"]
@@ -154,7 +154,7 @@ class PoolOperations:
         :type dev_center_dns_suffix: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Pool, or the result of cls(response)
-        :rtype: ~dev_center.models.Pool
+        :rtype: ~dev_center_dataplane_client.models.Pool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Pool"]
