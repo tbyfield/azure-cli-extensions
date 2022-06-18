@@ -916,7 +916,7 @@ def load_arguments(self, _):
         c.argument('tags', tags_type)
         c.argument('location', arg_type=get_location_type(self.cli_ctx), required=False,
                    validator=get_default_location_from_resource_group)
-        c.argument('subnet_id', type=str, help='The subnet to attach Virtual Machines to')
+        c.argument('subnet_id', required=True, type=str, help='The subnet to attach Virtual Machines to')
         c.argument('domain_name', type=str, help='Active Directory domain name')
         c.argument('organization_unit', type=str, help='Active Directory domain Organization Unit (OU)')
         c.argument('domain_username', type=str, help='The username of an Active Directory account (user or service '
@@ -925,7 +925,7 @@ def load_arguments(self, _):
         c.argument('domain_password', type=str, help='The password for the account used to join domain')
         c.argument('networking_resource_group_name', type=str, help='The name for the managed resource group where NICs will be '
                    'placed.')
-        c.argument('domain_join_type', arg_type=get_enum_type(['HybridAzureADJoin', 'AzureADJoin']), help='AAD Join '
+        c.argument('domain_join_type', required=True, arg_type=get_enum_type(['HybridAzureADJoin', 'AzureADJoin']), help='AAD Join '
                    'type.')
 
     with self.argument_context('devcenter admin network-connection update') as c:
