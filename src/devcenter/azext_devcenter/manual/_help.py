@@ -482,112 +482,6 @@ helps['devcenter admin attached-network wait'] = """
 --dev-center-name "Contoso" --resource-group "rg1" --deleted
 """
 
-helps['devcenter admin environment'] = """
-    type: group
-    short-summary: Manage environment with devcenter
-"""
-
-helps['devcenter admin environment list'] = """
-    type: command
-    short-summary: "Lists the environments for a project."
-    examples:
-      - name: Environments_ListByProject
-        text: |-
-               az devcenter admin environment list --project-name "{projectName}" --resource-group "rg1"
-"""
-
-helps['devcenter admin environment show'] = """
-    type: command
-    short-summary: "Gets an environment."
-    examples:
-      - name: Environments_Get
-        text: |-
-               az devcenter admin environment show --name "{environmentName}" --project-name "{projectName}" --resource-group \
-"rg1"
-"""
-
-helps['devcenter admin environment create'] = """
-    type: command
-    short-summary: "Create an environment."
-    examples:
-      - name: Environments_CreateByCatalogItem
-        text: |-
-               az devcenter admin environment create --location "centralus" --description "Personal Dev Environment" \
---catalog-item-name "helloworld" --deployment-parameters "{\\"app_name\\":\\"mydevApi\\"}" --environment-type \
-"DevTest" --tags ProjectType="WebApi" Role="Development" Tech="NetCore" --name "{environmentName}" --project-name \
-"{projectName}" --resource-group "rg1"
-      - name: Environments_CreateByTemplateUri
-        text: |-
-               az devcenter admin environment create --location "centralus" --description "Personal Dev Environment" \
---deployment-parameters "{\\"app_name\\":\\"mydevApi\\"}" --environment-type "DevTest" --template-uri \
-"https://raw.githubusercontent.com/contoso/webhelpcenter/master/environments/composition-template.json" --tags \
-ProjectType="WebApi" Role="Development" Tech="NetCore" --name "{environmentName}" --project-name "{projectName}" \
---resource-group "rg1"
-"""
-
-helps['devcenter admin environment update'] = """
-    type: command
-    short-summary: "Partially updates an environment."
-    examples:
-      - name: Environments_Update
-        text: |-
-               az devcenter admin environment update --description "Personal Dev Environment 2" --tags ProjectType="WebApi" \
-Role="Development" Tech="NetCore" --name "{environmentName}" --project-name "{projectName}" --resource-group "rg1"
-"""
-
-helps['devcenter admin environment delete'] = """
-    type: command
-    short-summary: "Deletes an environment and all it's associated resources."
-    examples:
-      - name: Environments_Delete
-        text: |-
-               az devcenter admin environment delete --name "{environmentName}" --project-name "{projectName}" \
---resource-group "rg1"
-"""
-
-helps['devcenter admin environment deploy'] = """
-    type: command
-    short-summary: "Deploys an environment's resources."
-    examples:
-      - name: Environments_Deploy
-        text: |-
-               az devcenter admin environment deploy --name "{environmentName}" --project-name "{projectName}" \
---resource-group "rg1"
-"""
-
-helps['devcenter admin environment wait'] = """
-    type: command
-    short-summary: Place the CLI in a waiting state until a condition of the devcenter environment is met.
-    examples:
-      - name: Pause executing next line of CLI script until the devcenter environment is successfully created.
-        text: |-
-               az devcenter admin environment wait --name "{environmentName}" --project-name "{projectName}" --resource-group \
-"rg1" --created
-      - name: Pause executing next line of CLI script until the devcenter environment is successfully updated.
-        text: |-
-               az devcenter admin environment wait --name "{environmentName}" --project-name "{projectName}" --resource-group \
-"rg1" --updated
-      - name: Pause executing next line of CLI script until the devcenter environment is successfully deleted.
-        text: |-
-               az devcenter admin environment wait --name "{environmentName}" --project-name "{projectName}" --resource-group \
-"rg1" --deleted
-"""
-
-helps['devcenter admin deployment'] = """
-    type: group
-    short-summary: Manage deployment with devcenter
-"""
-
-helps['devcenter admin deployment list'] = """
-    type: command
-    short-summary: "Gets an environment's deployment history."
-    examples:
-      - name: Deployments_ListByEnvironment
-        text: |-
-               az devcenter admin deployment list --environment-name "{environmentName}" --project-name "{projectName}" \
---resource-group "rg1"
-"""
-
 helps['devcenter admin environment-type'] = """
     type: group
     short-summary: Manage environment type with devcenter
@@ -723,77 +617,6 @@ helps['devcenter admin project-environment-type wait'] = """
 --resource-group "rg1" --deleted
 """
 
-helps['devcenter admin catalog-item'] = """
-    type: group
-    short-summary: Manage catalog item with devcenter
-"""
-
-helps['devcenter admin catalog-item list'] = """
-    type: command
-    short-summary: "Lists items by catalog And Lists all catalog items available for a project."
-    examples:
-      - name: CatalogItems_ListByCatalog
-        text: |-
-               az devcenter admin catalog-item list --catalog-name "{catalogName}" --dev-center-name "Contoso" \
---resource-group "rg1"
-      - name: CatalogItems_ListByProject
-        text: |-
-               az devcenter admin catalog-item list --project-name "{projectName}" --resource-group "rg1"
-"""
-
-helps['devcenter admin catalog-item show'] = """
-    type: command
-    short-summary: "Gets a catalog item."
-    examples:
-      - name: CatalogItems_Get
-        text: |-
-               az devcenter admin catalog-item show --name "{itemName}" --catalog-name "{catalogName}" --dev-center-name \
-"Contoso" --resource-group "rg1"
-"""
-
-helps['devcenter admin catalog-item create'] = """
-    type: command
-    short-summary: "Creates a catalog item resource."
-    parameters:
-      - name: --parameters
-        short-summary: "Parameters that can be provided to the catalog item."
-        long-summary: |
-            Usage: --parameters name=XX type=XX description=XX
-
-            name: The name of the parameter.
-            type: The type accepted for the parameter value.
-            description: Description of the parameter.
-
-            Multiple actions can be specified by using more than one --parameters argument.
-    examples:
-      - name: CatalogItems_CreateOrUpdate
-        text: |-
-               az devcenter admin catalog-item create --description "Hello world template to deploy a basic API service" \
---parameters name="app_name" type="string" description="The name of the application. This must be provided when \
-deploying an environment with this template." --template-path "azuredeploy.json" --name "{itemName}" --catalog-name \
-"{catalogName}" --dev-center-name "Contoso" --resource-group "rg1"
-"""
-
-helps['devcenter admin catalog-item update'] = """
-    type: command
-    short-summary: "Partially updates a catalog item."
-    examples:
-      - name: CatalogItems_Update
-        text: |-
-               az devcenter admin catalog-item update --description "Hello world template to deploy a basic API service" \
---name "{itemName}" --catalog-name "{catalogName}" --dev-center-name "Contoso" --resource-group "rg1"
-"""
-
-helps['devcenter admin catalog-item delete'] = """
-    type: command
-    short-summary: "Deletes a catalog item."
-    examples:
-      - name: CatalogItems_Delete
-        text: |-
-               az devcenter admin catalog-item delete --name "{itemName}" --catalog-name "{catalogName}" --dev-center-name \
-"Contoso" --resource-group "rg1"
-"""
-
 helps['devcenter admin catalog'] = """
     type: group
     short-summary: Manage catalog with devcenter
@@ -921,60 +744,6 @@ helps['devcenter admin catalog wait'] = """
 --deleted
 """
 
-helps['devcenter admin mapping'] = """
-    type: group
-    short-summary: Manage mapping with devcenter
-"""
-
-helps['devcenter admin mapping list'] = """
-    type: command
-    short-summary: "Lists mappings."
-    examples:
-      - name: Mappings_ListByDevCenter
-        text: |-
-               az devcenter admin mapping list --dev-center-name "Contoso" --resource-group "rg1"
-"""
-
-helps['devcenter admin mapping show'] = """
-    type: command
-    short-summary: "Gets a mapping."
-    examples:
-      - name: Mappings_Get
-        text: |-
-               az devcenter admin mapping show --dev-center-name "Contoso" --name "{mappingName}" --resource-group "rg1"
-"""
-
-helps['devcenter admin mapping create'] = """
-    type: command
-    short-summary: "Create a mapping."
-    examples:
-      - name: Mappings_CreateOrUpdate
-        text: |-
-               az devcenter admin mapping create --environment-type "Sandbox" --mapped-subscription-id \
-"/subscriptions/57a221ae-b5e9-4bea-be0a-e86e5f9317cc" --project-id "/subscriptions/{subscriptionId}/resourceGroups/rg1/\
-providers/Microsoft.DevCenter/projects/{projectName}" --dev-center-name "Contoso" --name "{mappingName}" \
---resource-group "rg1"
-"""
-
-helps['devcenter admin mapping update'] = """
-    type: command
-    short-summary: "Partially updates a mapping."
-    examples:
-      - name: Mappings_Update
-        text: |-
-               az devcenter admin mapping update --mapped-subscription-id "/subscriptions/57a221ae-b5e9-4bea-be0a-e86e5f9317cc"\
- --dev-center-name "Contoso" --name "{mappingName}" --resource-group "rg1"
-"""
-
-helps['devcenter admin mapping delete'] = """
-    type: command
-    short-summary: "Deletes a mapping."
-    examples:
-      - name: Mappings_Delete
-        text: |-
-               az devcenter admin mapping delete --dev-center-name "Contoso" --name "{mappingName}" --resource-group "rg1"
-"""
-
 helps['devcenter admin devbox-definition'] = """
     type: group
     short-summary: Manage Dev Box definition with devcenter
@@ -1064,6 +833,20 @@ helps['devcenter admin devbox-definition wait'] = """
 "rg1" --deleted
 """
 
+helps['devcenter admin usage'] = """
+    type: group
+    short-summary: Manage usage with devcenter
+"""
+
+helps['devcenter admin usage list'] = """
+    type: command
+    short-summary: "Lists the current usages and limits in this location for the provided subscription."
+    examples:
+      - name: listUsages
+        text: |-
+               az devcenter usage list --location "westus"
+"""
+
 helps['devcenter admin sku'] = """
     type: group
     short-summary: Manage sku with devcenter
@@ -1149,97 +932,78 @@ helps['devcenter admin pool wait'] = """
 --deleted
 """
 
-helps['devcenter admin machine-definition'] = """
+helps['devcenter admin schedule'] = """
     type: group
-    short-summary: Manage machine definition with devcenter
+    short-summary: Manage schedule with devcenter
 """
 
-helps['devcenter admin machine-definition list'] = """
+helps['devcenter admin schedule list'] = """
     type: command
-    short-summary: "List Machine Definitions in a resource group And Lists Machine Definitions in a subscription."
+    short-summary: "Lists schedules for a pool."
     examples:
-      - name: MachineDefinitions_ListByResourceGroup
+      - name: Schedules_ListByPool
         text: |-
-               az devcenter admin machine-definition list --resource-group "rg1"
-      - name: MachineDefinitions_ListBySubscription
-        text: |-
-               az devcenter admin machine-definition list
+               az devcenter admin schedule list --pool-name "DevPool" --project-name "TestProject" --resource-group "rg1"
 """
 
-helps['devcenter admin machine-definition show'] = """
+helps['devcenter admin schedule show'] = """
     type: command
-    short-summary: "Gets a Machine Definition."
+    short-summary: "Gets a schedule resource."
     examples:
-      - name: MachineDefinitions_Get
+      - name: Schedules_GetByPool
         text: |-
-               az devcenter admin machine-definition show --name "{machineDefinitionName}" --resource-group "rg1"
+               az devcenter admin schedule show --pool-name "DevPool" --project-name "TestProject" --resource-group "rg1" \
+--name "autoShutdown"
 """
 
-helps['devcenter admin machine-definition create'] = """
+helps['devcenter admin schedule create'] = """
     type: command
-    short-summary: "Create a Machine definition."
-    parameters:
-      - name: --image-reference
-        short-summary: "Image reference information."
-        long-summary: |
-            Usage: --image-reference id=XX publisher=XX offer=XX sku=XX
-
-            id: Image resource ID.
-            publisher: The image publisher.
-            offer: The image offer.
-            sku: The image sku.
+    short-summary: "Create a Schedule."
     examples:
-      - name: MachineDefinitions_CreateWithCustomImage
+      - name: Schedules_CreateDailyShutdownPoolSchedule
         text: |-
-               az devcenter admin machine-definition create --location "centralus" --image-reference \
-id="/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c58ffff/resourceGroups/Example/providers/Microsoft.Compute/images/exampl\
-eImage" --name "{machineDefinitionName}" --resource-group "rg1"
+               az devcenter admin schedule create --state "Enabled" --time "17:30" --time-zone "America/Los_Angeles" \
+--pool-name "DevPool" --project-name "DevProject" --resource-group "rg1" --name "autoShutdown"
 """
 
-helps['devcenter admin machine-definition update'] = """
+helps['devcenter admin schedule update'] = """
     type: command
-    short-summary: "Partially updates a Machine definition."
-    parameters:
-      - name: --image-reference
-        short-summary: "Image reference information."
-        long-summary: |
-            Usage: --image-reference id=XX publisher=XX offer=XX sku=XX
-
-            id: Image resource ID.
-            publisher: The image publisher.
-            offer: The image offer.
-            sku: The image sku.
+    short-summary: "Partially updates a Scheduled."
     examples:
-      - name: MachineDefinitions_Patch
+      - name: Schedules_Update
         text: |-
-               az devcenter admin machine-definition update --image-reference id="/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c5\
-8ffff/resourceGroups/Example/providers/Microsoft.Compute/images/image2" --name "{machineDefinitionName}" \
---resource-group "rg1"
+               az devcenter admin schedule update --time "18:00" --pool-name "DevPool" --project-name "TestProject" \
+--resource-group "rg1" --name "autoShutdown"
 """
 
-helps['devcenter admin machine-definition delete'] = """
+helps['devcenter admin schedule delete'] = """
     type: command
-    short-summary: "Deletes a Machine definition."
+    short-summary: "Deletes a Scheduled."
     examples:
-      - name: MachineDefinitions_Delete
+      - name: Schedules_Delete
         text: |-
-               az devcenter admin machine-definition delete --name "{machineDefinitionName}" --resource-group "rg1"
+               az devcenter admin schedule delete --pool-name "DevPool" --project-name "TestProject" --resource-group "rg1" \
+--name "autoShutdown"
 """
 
-helps['devcenter admin machine-definition wait'] = """
+helps['devcenter admin schedule wait'] = """
     type: command
-    short-summary: Place the CLI in a waiting state until a condition of the devcenter machine-definition is met.
+    short-summary: Place the CLI in a waiting state until a condition of the devcenter admin schedule is met.
     examples:
-      - name: Pause executing next line of CLI script until the devcenter machine-definition is successfully created.
+      - name: Pause executing next line of CLI script until the devcenter admin schedule is successfully created.
         text: |-
-               az devcenter admin machine-definition wait --name "{machineDefinitionName}" --resource-group "rg1" --created
-      - name: Pause executing next line of CLI script until the devcenter machine-definition is successfully updated.
+               az devcenter admin schedule wait --pool-name "DevPool" --project-name "TestProject" --resource-group "rg1" \
+--name "autoShutdown" --created
+      - name: Pause executing next line of CLI script until the devcenter admin schedule is successfully updated.
         text: |-
-               az devcenter admin machine-definition wait --name "{machineDefinitionName}" --resource-group "rg1" --updated
-      - name: Pause executing next line of CLI script until the devcenter machine-definition is successfully deleted.
+               az devcenter admin schedule wait --pool-name "DevPool" --project-name "TestProject" --resource-group "rg1" \
+--name "autoShutdown" --updated
+      - name: Pause executing next line of CLI script until the devcenter admin schedule is successfully deleted.
         text: |-
-               az devcenter admin machine-definition wait --name "{machineDefinitionName}" --resource-group "rg1" --deleted
+               az devcenter admin schedule wait --pool-name "DevPool" --project-name "TestProject" --resource-group "rg1" \
+--name "autoShutdown" --deleted
 """
+
 
 helps['devcenter admin network-connection'] = """
     type: group
