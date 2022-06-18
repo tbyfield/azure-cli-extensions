@@ -27,6 +27,20 @@ from azext_devcenter.generated._client_factory import (
 def load_command_table(self, _):
 
     #data plane
+    devcenter_action_dp = CliCommandType(
+        operations_tmpl=(
+            'azext_devcenter.vendored_sdks.devcenter_dataplane.operations._actions_operations#ActionsOperations.{}'
+        ),
+        client_factory=cf_action_dp,
+    )
+
+    devcenter_artifact_dp = CliCommandType(
+        operations_tmpl=(
+            'azext_devcenter.vendored_sdks.devcenter_dataplane.operations._artifacts_operations#ArtifactsOperations.{}'
+        ),
+        client_factory=cf_artifact_dp,
+    )
+
     devcenter_pool_dp = CliCommandType(
     operations_tmpl='azext_devcenter.vendored_sdks.devcenter_dataplane.operations._pool_operations#PoolOperations.{}',
     client_factory=cf_pool_dp,
@@ -38,7 +52,7 @@ def load_command_table(self, _):
         client_factory=cf_project_dp,
     )
 
-    devcenter_dev_box = CliCommandType(
+    devcenter_dev_box_dp = CliCommandType(
         operations_tmpl=(
             'azext_devcenter.vendored_sdks.devcenter_dataplane.operations._dev_box_operations#DevBoxOperations.{}'
         ),
@@ -50,6 +64,11 @@ def load_command_table(self, _):
             'azext_devcenter.vendored_sdks.devcenter_dataplane.operations._catalog_item_operations#CatalogItemOperations.{}'
         ),
         client_factory=cf_catalog_item_dp,
+    )
+
+    devcenter_catalog_item_version_dp = CliCommandType(
+        operations_tmpl='azext_devcenter.vendored_sdks.devcenter_dataplane.operations._catalog_item_versions_operations#CatalogItemVersionsOperations.{}',
+        client_factory=cf_catalog_item_version_dp,
     )
 
     devcenter_environment_dp = CliCommandType(
@@ -65,6 +84,13 @@ def load_command_table(self, _):
             'azext_devcenter.vendored_sdks.devcenter_dataplane.operations._environment_type_operations#EnvironmentTypeOperations.{}'
         ),
         client_factory=cf_environment_type_dp,
+    )
+
+    devcenter_schedule_dp = CliCommandType(
+        operations_tmpl=(
+            'azext_devcenter.vendored_sdks.devcenter_dataplane.operations._schedule_operations#ScheduleOperations.{}'
+        ),
+        client_factory=cf_schedule_dp,
     )
 
     #control plane
@@ -176,7 +202,7 @@ def load_command_table(self, _):
         g.custom_command('list', 'devcenter_pool_list_dp')
         g.custom_show_command('show', 'devcenter_pool_show_dp')
     
-    with self.command_group('devcenter dev dev-box', devcenter_dev_box, client_factory=cf_dev_box_dp) as g:
+    with self.command_group('devcenter dev dev-box', devcenter_dev_box_dp, client_factory=cf_dev_box_dp) as g:
         g.custom_command('list', 'devcenter_dev_box_list')
         g.custom_show_command('show', 'devcenter_dev_box_show')
         g.custom_command('create', 'devcenter_dev_box_create', supports_no_wait=True)
@@ -185,25 +211,44 @@ def load_command_table(self, _):
         g.custom_command('start', 'devcenter_dev_box_start', supports_no_wait=True)
         g.custom_command('stop', 'devcenter_dev_box_stop', supports_no_wait=True)
 
-    # with self.command_group('devcenter dev catalog-item', devcenter_catalog_item_dp, client_factory=cf_catalog_item_dp) as g:
-    #     g.custom_command('list', 'devcenter_catalog_item_list_dp')
+    with self.command_group('devcenter dev action', devcenter_action_dp, client_factory=cf_action_dp) as g:
+        g.custom_command('list', 'devcenter_action_list')
+        g.custom_show_command('show', 'devcenter_action_show')
+        g.custom_command('create', 'devcenter_action_create', supports_no_wait=True)
+        g.custom_wait_command('wait', 'devcenter_action_show')
 
-    # with self.command_group('devcenter dev deployment', devcenter_deployment_dp, client_factory=cf_deployment_dp) as g:
-    #     g.custom_command('list', 'devcenter_deployment_list_dp')
+    with self.command_group('devcenter dev artifact', devcenter_artifact_dp, client_factory=cf_artifact_dp) as g:
+        g.custom_command('list', 'devcenter_artifact_list')
 
-    # with self.command_group('devcenter dev environment', devcenter_environment_dp, client_factory=cf_environment_dp) as g:
-    #     g.custom_command('list', 'devcenter_environment_list_dp')
-    #     g.custom_show_command('show', 'devcenter_environment_show_dp')
-    #     g.custom_command('create', 'devcenter_environment_create_dp')
-    #     g.custom_command('update', 'devcenter_environment_update_dp')
-    #     g.custom_command('delete', 'devcenter_environment_delete_dp', confirmation=True)
-    #     g.custom_command('deploy', 'devcenter_environment_deploy_dp')
+    with self.command_group('devcenter dev catalog-item', devcenter_catalog_item_dp, client_factory=cf_catalog_item_dp) as g:
+        g.custom_command('list', 'devcenter_catalog_item_list')
+        g.custom_show_command('show', 'devcenter_catalog_item_show')
 
-    # with self.command_group(
-    #     'devcenter dev environment-type', devcenter_environment_type_dp, client_factory=cf_environment_type_dp
-    # ) as g:
-    #     g.custom_command('list', 'devcenter_environment_type_list_dp')
-    
+    with self.command_group(
+        'devcenter dev catalog-item-version', devcenter_catalog_item_version_dp, client_factory=cf_catalog_item_version_dp
+    ) as g:
+        g.custom_command('list', 'devcenter_catalog_item_version_list')
+        g.custom_show_command('show', 'devcenter_catalog_item_version_show')
+
+    with self.command_group('devcenter dev environment', devcenter_environment_dp, client_factory=cf_environment_dp) as g:
+        g.custom_command('list', 'devcenter_environment_list')
+        g.custom_show_command('show', 'devcenter_environment_show')
+        g.custom_command('create', 'devcenter_environment_create', supports_no_wait=True)
+        g.custom_command('update', 'devcenter_environment_update', supports_no_wait=True)
+        g.custom_command('delete', 'devcenter_environment_delete', supports_no_wait=True, confirmation=True)
+        g.custom_command('list-by-project', 'devcenter_environment_list_by_project')
+        g.custom_wait_command('wait', 'devcenter_environment_show')
+
+    with self.command_group(
+        'devcenter dev environment-type', devcenter_environment_type, client_factory=cf_environment_type
+    ) as g:
+        g.custom_command('list', 'devcenter_environment_type_list_dp')
+
+    with self.command_group('devcenter dev schedule', devcenter_schedule, client_factory=cf_schedule) as g:
+        g.custom_command('list', 'devcenter_schedule_list_dp')
+        g.custom_show_command('show', 'devcenter_schedule_show_dp')
+
+
     #control plane
     with self.command_group(
         'devcenter admin attached-network', devcenter_attached_network, client_factory=cf_attached_network

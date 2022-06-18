@@ -32,7 +32,7 @@ def cf_pool_dp(cli_ctx, *_):
     return cf_devcenter_dataplane(cli_ctx).pool
 
 
-def cf_schedule(cli_ctx, *_):
+def cf_schedule_dp(cli_ctx, *_):
     return cf_devcenter_dataplane(cli_ctx).schedule
 
 def cf_dev_box_dp(cli_ctx, *_):
@@ -41,16 +41,16 @@ def cf_dev_box_dp(cli_ctx, *_):
 def cf_environment_dp(cli_ctx, *_):
     return cf_devcenter_dataplane(cli_ctx).environments
 
-def cf_action(cli_ctx, *_):
+def cf_action_dp(cli_ctx, *_):
     return cf_devcenter_dataplane(cli_ctx).actions
 
-def cf_artifact(cli_ctx, *_):
+def cf_artifact_dp(cli_ctx, *_):
     return cf_devcenter_dataplane(cli_ctx).artifacts
 
 def cf_catalog_item_dp(cli_ctx, *_):
     return cf_devcenter_dataplane(cli_ctx).catalog_item
 
-def cf_catalog_item_version(cli_ctx, *_):
+def cf_catalog_item_version_dp(cli_ctx, *_):
     return cf_devcenter_dataplane(cli_ctx).catalog_item_versions
 
 def cf_environment_type_dp(cli_ctx, *_):

@@ -27,185 +27,322 @@ def load_arguments(self, _):
     from azure.cli.core.commands.parameters import tags_type
 
     with self.argument_context('devcenter dev project list') as c:
-        c.argument('top', type=int, help='The maximum number of resources to return from the operation. Example: '
-                   '\'$top=10\'.')
+        c.argument('dev_center', type=str, help='The DevCenter to operate on.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
         c.argument('filter_', options_list=['--filter'], type=str, help='An OData $filter clause to apply to the '
                    'operation.')
-        c.argument('dev_center', type=str, help='The DevCenter.')
-        c.argument('devcenter_dns_suffix', type=str, help='Optional DevCenter DNS suffix')
+        c.argument('top', type=int, help='The maximum number of resources to return from the operation. Example: '
+                   '\'$top=10\'.')
+
+    with self.argument_context('devcenter dev project show') as c:
+        c.argument('dev_center', type=str, help='The DevCenter to operate on.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
+        c.argument('project_name', options_list=['--name', '-n', '--project-name'], type=str, help='The DevCenter '
+                   'Project upon which to execute operations.')
 
     with self.argument_context('devcenter dev pool list') as c:
+        c.argument('dev_center', type=str, help='The DevCenter to operate on.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
         c.argument('top', type=int, help='The maximum number of resources to return from the operation. Example: '
                    '\'$top=10\'.')
         c.argument('filter_', options_list=['--filter'], type=str, help='An OData $filter clause to apply to the '
                    'operation.')
-        c.argument('project_name', type=str, help='The Project upon which to execute operations.')
-        c.argument('dev_center', type=str, help='The DevCenter.')
-        c.argument('devcenter_dns_suffix', type=str, help='Optional DevCenter DNS suffix')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
 
     with self.argument_context('devcenter dev pool show') as c:
+        c.argument('dev_center', type=str, help='The DevCenter to operate on.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
         c.argument('pool_name', options_list=['--name', '-n', '--pool-name'], type=str, help='The name of a pool of '
-                   'virtual machines.')
-        c.argument('project_name', options_list=['--project-name', '--project'], type=str, help='The Project upon which to execute operations.')
-        c.argument('dev_center', type=str, help='The DevCenter.')
-        c.argument('devcenter_dns_suffix', type=str, help='Optional DevCenter DNS suffix')
+                   'Dev Boxes.')
+
+    with self.argument_context('devcenter dev schedule list') as c:
+        c.argument('dev_center', type=str, help='The DevCenter to operate on.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
+        c.argument('top', type=int, help='The maximum number of resources to return from the operation. Example: '
+                   '\'$top=10\'.')
+        c.argument('filter_', options_list=['--filter'], type=str, help='An OData $filter clause to apply to the '
+                   'operation.')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
+        c.argument('pool_name', type=str, help='The name of a pool of Dev Boxes.')
+
+    with self.argument_context('devcenter dev schedule show') as c:
+        c.argument('dev_center', type=str, help='The DevCenter to operate on.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
+        c.argument('pool_name', type=str, help='The name of a pool of Dev Boxes.')
+        c.argument('schedule_name', options_list=['--name', '-n', '--schedule-name'], type=str, help='The name of a '
+                   'schedule.')
 
     with self.argument_context('devcenter dev dev-box list') as c:
+        c.argument('dev_center', type=str, help='The DevCenter to operate on.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
         c.argument('filter_', options_list=['--filter'], type=str, help='An OData $filter clause to apply to the '
                    'operation.')
         c.argument('top', type=int, help='The maximum number of resources to return from the operation. Example: '
                    '\'$top=10\'.')
-        c.argument('project_name', type=str, help='The Project upon which to execute operations.')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
         c.argument('user_id', type=str, help='The id of the user. If value is \'me\', the identity is taken from the '
                    'authentication context')
-        c.argument('dev_center', type=str, help='The DevCenter.')
-        c.argument('devcenter_dns_suffix', type=str, help='Optional DevCenter DNS suffix')
 
     with self.argument_context('devcenter dev dev-box show') as c:
-        c.argument('project_name', type=str, help='The Project upon which to execute operations.')
+        c.argument('dev_center', type=str, help='The DevCenter to operate on.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
         c.argument('user_id', type=str, help='The id of the user. If value is \'me\', the identity is taken from the '
                    'authentication context')
-        c.argument('dev_box_name', options_list=['--name', '-n', '--dev-box-name'], type=str,
-                   help='The name of a virtual machine.')
-        c.argument('dev_center', type=str, help='The DevCenter.')
-        c.argument('devcenter_dns_suffix', type=str, help='Optional DevCenter DNS suffix')
+        c.argument('dev_box_name', options_list=['--name', '-n', '--dev-box-name'], type=str, help='The name of a Dev '
+                   'Box.')
 
     with self.argument_context('devcenter dev dev-box create') as c:
-        c.argument('project_name', type=str, help='The Project upon which to execute operations.')
+        c.argument('dev_center', type=str, help='The DevCenter to operate on.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
         c.argument('user_id', type=str, help='The id of the user. If value is \'me\', the identity is taken from the '
                    'authentication context')
-        c.argument('dev_box_name', options_list=['--name', '-n', '--dev-box-name'], type=str,
-                   help='The name of a virtual machine.')
-        c.argument('pool_name', type=str, help='The name of the virtual machine pool this machine belongs to.')
-        c.argument('dev_center', type=str, help='The DevCenter.')
-        c.argument('devcenter_dns_suffix', type=str, help='Optional DevCenter DNS suffix')
+        c.argument('dev_box_name', options_list=['--name', '-n', '--dev-box-name'], type=str, help='The name of a Dev '
+                   'Box.')
+        c.argument('pool_name', type=str, help='The name of the Dev Box pool this machine belongs to.')
 
     with self.argument_context('devcenter dev dev-box delete') as c:
-        c.argument('project_name', type=str, help='The Project upon which to execute operations.')
+        c.argument('dev_center', type=str, help='The DevCenter to operate on.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
         c.argument('user_id', type=str, help='The id of the user. If value is \'me\', the identity is taken from the '
                    'authentication context')
-        c.argument('dev_box_name', options_list=['--name', '-n', '--dev-box-name'], type=str,
-                   help='The name of a virtual machine.')
-        c.argument('dev_center', type=str, help='The DevCenter.')
-        c.argument('devcenter_dns_suffix', type=str, help='Optional DevCenter DNS suffix')
-
-    with self.argument_context('devcenter dev dev-box assign') as c:
-        c.argument('project_name', type=str, help='The Project upon which to execute operations.')
-        c.argument('user_id', type=str, help='The id of the user. If value is \'me\', the identity is taken from the '
-                   'authentication context')
-        c.argument('dev_box_name', options_list=['--name', '-n', '--dev-box-name'], type=str,
-                   help='The name of a virtual machine.')
-        c.argument('new_owner', type=str, help='Identifier of new owner')
-        c.argument('dev_center', type=str, help='The DevCenter.')
-        c.argument('devcenter_dns_suffix', type=str, help='Optional DevCenter DNS suffix')
+        c.argument('dev_box_name', options_list=['--name', '-n', '--dev-box-name'], type=str, help='The name of a Dev '
+                   'Box.')
 
     with self.argument_context('devcenter dev dev-box get-remote-connection') as c:
-        c.argument('project_name', type=str, help='The Project upon which to execute operations.')
+        c.argument('dev_center', type=str, help='The DevCenter to operate on.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
         c.argument('user_id', type=str, help='The id of the user. If value is \'me\', the identity is taken from the '
                    'authentication context')
-        c.argument('dev_box_name', options_list=['--name', '-n', '--dev-box-name'], type=str,
-                   help='The name of a virtual machine.')
-        c.argument('dev_center', type=str, help='The DevCenter.')
-        c.argument('devcenter_dns_suffix', type=str, help='Optional DevCenter DNS suffix')
+        c.argument('dev_box_name', options_list=['--name', '-n', '--dev-box-name'], type=str, help='The name of a Dev '
+                   'Box.')
 
     with self.argument_context('devcenter dev dev-box start') as c:
-        c.argument('project_name', type=str, help='The Project upon which to execute operations.')
+        c.argument('dev_center', type=str, help='The DevCenter to operate on.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
         c.argument('user_id', type=str, help='The id of the user. If value is \'me\', the identity is taken from the '
                    'authentication context')
-        c.argument('dev_box_name', options_list=['--name', '-n', '--dev-box-name'], type=str,
-                   help='The name of a virtual machine.')
-        c.argument('dev_center', type=str, help='The DevCenter.')
-        c.argument('devcenter_dns_suffix', type=str, help='Optional DevCenter DNS suffix')
+        c.argument('dev_box_name', options_list=['--name', '-n', '--dev-box-name'], type=str, help='The name of a Dev '
+                   'Box.')
 
     with self.argument_context('devcenter dev dev-box stop') as c:
-        c.argument('project_name', type=str, help='The Project upon which to execute operations.')
+        c.argument('dev_center', type=str, help='The DevCenter to operate on.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
         c.argument('user_id', type=str, help='The id of the user. If value is \'me\', the identity is taken from the '
                    'authentication context')
-        c.argument('dev_box_name', options_list=['--name', '-n', '--dev-box-name'], type=str,
-                   help='The name of a virtual machine.')
-        c.argument('dev_center', type=str, help='The DevCenter.')
-        c.argument('devcenter_dns_suffix', type=str, help='Optional DevCenter DNS suffix')
+        c.argument('dev_box_name', options_list=['--name', '-n', '--dev-box-name'], type=str, help='The name of a Dev '
+                   'Box.')
+
+    with self.argument_context('devcenter dev dev-box wait') as c:
+        c.argument('dev_center', type=str, help='The DevCenter to operate on.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
+        c.argument('user_id', type=str, help='The id of the user. If value is \'me\', the identity is taken from the '
+                   'authentication context')
+        c.argument('dev_box_name', options_list=['--name', '-n', '--dev-box-name'], type=str, help='The name of a Dev '
+                   'Box.')
 
     with self.argument_context('devcenter dev environment list') as c:
         c.argument('dev_center', type=str, help='The DevCenter to operate on.')
-        c.argument('devcenter_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter requests.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
         c.argument('top', type=int, help='The maximum number of resources to return from the operation. Example: '
                    '\'$top=10\'.')
-        c.argument('project_name', type=str, help='The Project upon which to execute operations.')
-        c.argument('filter_', options_list=['--filter'], type=str, help='An OData $filter clause to apply to the '
-                   'operation.')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
 
     with self.argument_context('devcenter dev environment show') as c:
         c.argument('dev_center', type=str, help='The DevCenter to operate on.')
-        c.argument('devcenter_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter requests.')
-        c.argument('project_name', type=str, help='The Project upon which to execute operations.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
+        c.argument('user_id', type=str, help='The id of the user. If value is \'me\', the identity is taken from the '
+                   'authentication context')
         c.argument('environment_name', options_list=['--name', '-n', '--environment-name'], type=str, help='The name '
                    'of the environment.')
 
     with self.argument_context('devcenter dev environment create') as c:
         c.argument('dev_center', type=str, help='The DevCenter to operate on.')
-        c.argument('devcenter_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter requests.')
-        c.argument('project_name', type=str, help='The Project upon which to execute operations.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
+        c.argument('user_id', type=str, help='The id of the user. If value is \'me\', the identity is taken from the '
+                   'authentication context')
         c.argument('environment_name', options_list=['--name', '-n', '--environment-name'], type=str, help='The name '
                    'of the environment.')
         c.argument('description', type=str, help='Description of the Environment.')
+        c.argument('catalog_name', type=str, help='Name of the catalog.')
         c.argument('catalog_item_name', type=str, help='Name of the catalog item.')
-        c.argument('deployment_parameters', type=validate_file_or_dict, help='Deployment parameters passed to catalog '
-                   'item. Expected value: json-string/json-file/@json-file.')
+        c.argument('parameters', type=validate_file_or_dict, help='Parameters object for the deploy action Expected '
+                   'value: json-string/json-file/@json-file.')
+        c.argument('scheduled_tasks', type=validate_file_or_dict, help='Set of supported scheduled tasks to help '
+                   'manage cost. Expected value: json-string/json-file/@json-file.')
+        c.argument('tags', tags_type)
         c.argument('environment_type', type=str, help='Environment type.')
         c.argument('owner', type=str, help='Identifier of the owner of this Environment.')
-        c.argument('tags', tags_type)
 
     with self.argument_context('devcenter dev environment update') as c:
         c.argument('dev_center', type=str, help='The DevCenter to operate on.')
-        c.argument('devcenter_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter requests.')
-        c.argument('project_name', type=str, help='The Project upon which to execute operations.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
+        c.argument('user_id', type=str, help='The id of the user. If value is \'me\', the identity is taken from the '
+                   'authentication context')
         c.argument('environment_name', options_list=['--name', '-n', '--environment-name'], type=str, help='The name '
                    'of the environment.')
         c.argument('description', type=str, help='Description of the Environment.')
+        c.argument('catalog_name', type=str, help='Name of the catalog.')
         c.argument('catalog_item_name', type=str, help='Name of the catalog item.')
-        c.argument('deployment_parameters', type=validate_file_or_dict, help='Deployment parameters passed to catalog '
-                   'item. Expected value: json-string/json-file/@json-file.')
+        c.argument('parameters', type=validate_file_or_dict, help='Parameters object for the deploy action Expected '
+                   'value: json-string/json-file/@json-file.')
+        c.argument('scheduled_tasks', type=validate_file_or_dict, help='Set of supported scheduled tasks to help '
+                   'manage cost. Expected value: json-string/json-file/@json-file.')
+        c.argument('tags', tags_type)
 
     with self.argument_context('devcenter dev environment delete') as c:
         c.argument('dev_center', type=str, help='The DevCenter to operate on.')
-        c.argument('devcenter_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter requests.')
-        c.argument('project_name', type=str, help='The Project upon which to execute operations.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
+        c.argument('user_id', type=str, help='The id of the user. If value is \'me\', the identity is taken from the '
+                   'authentication context')
         c.argument('environment_name', options_list=['--name', '-n', '--environment-name'], type=str, help='The name '
                    'of the environment.')
 
-    with self.argument_context('devcenter dev environment deploy') as c:
+    with self.argument_context('devcenter dev environment list-by-project') as c:
         c.argument('dev_center', type=str, help='The DevCenter to operate on.')
-        c.argument('devcenter_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter requests.')
-        c.argument('project_name', type=str, help='The Project upon which to execute operations.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
+        c.argument('top', type=int, help='The maximum number of resources to return from the operation. Example: '
+                   '\'$top=10\'.')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
+        c.argument('user_id', type=str, help='The id of the user. If value is \'me\', the identity is taken from the '
+                   'authentication context')
+
+    with self.argument_context('devcenter dev environment wait') as c:
+        c.argument('dev_center', type=str, help='The DevCenter to operate on.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
+        c.argument('user_id', type=str, help='The id of the user. If value is \'me\', the identity is taken from the '
+                   'authentication context')
         c.argument('environment_name', options_list=['--name', '-n', '--environment-name'], type=str, help='The name '
                    'of the environment.')
-        c.argument('parameters', type=validate_file_or_dict, help='Deployment parameters. Expected value: '
-                   'json-string/json-file/@json-file.')
 
-    with self.argument_context('devcenter dev deployment list') as c:
+    with self.argument_context('devcenter dev action list') as c:
         c.argument('dev_center', type=str, help='The DevCenter to operate on.')
-        c.argument('devcenter_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter requests.')
-        c.argument('project_name', type=str, help='The Project upon which to execute operations.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
+        c.argument('user_id', type=str, help='The id of the user. If value is \'me\', the identity is taken from the '
+                   'authentication context')
         c.argument('environment_name', type=str, help='The name of the environment.')
         c.argument('top', type=int, help='The maximum number of resources to return from the operation. Example: '
                    '\'$top=10\'.')
-        c.argument('filter_', options_list=['--filter'], type=str, help='An OData $filter clause to apply to the '
-                   'operation.')
+
+    with self.argument_context('devcenter dev action show') as c:
+        c.argument('dev_center', type=str, help='The DevCenter to operate on.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
+        c.argument('user_id', type=str, help='The id of the user. If value is \'me\', the identity is taken from the '
+                   'authentication context')
+        c.argument('environment_name', type=str, help='The name of the environment.')
+        c.argument('action_id', type=str, help='The unique id of the action.')
+
+    with self.argument_context('devcenter dev action create') as c:
+        c.argument('dev_center', type=str, help='The DevCenter to operate on.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
+        c.argument('user_id', type=str, help='The id of the user. If value is \'me\', the identity is taken from the '
+                   'authentication context')
+        c.argument('environment_name', type=str, help='The name of the environment.')
+        c.argument('action_id', type=str, help='The Catalog Item action id to execute')
+        c.argument('parameters', type=validate_file_or_dict, help='Parameters object for the Action Expected value: '
+                   'json-string/json-file/@json-file.')
+
+    with self.argument_context('devcenter dev action wait') as c:
+        c.argument('dev_center', type=str, help='The DevCenter to operate on.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
+        c.argument('user_id', type=str, help='The id of the user. If value is \'me\', the identity is taken from the '
+                   'authentication context')
+        c.argument('environment_name', type=str, help='The name of the environment.')
+        c.argument('action_id', type=str, help='The unique id of the action.')
+
+    with self.argument_context('devcenter dev artifact list') as c:
+        c.argument('dev_center', type=str, help='The DevCenter to operate on.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
+        c.argument('user_id', type=str, help='The id of the user. If value is \'me\', the identity is taken from the '
+                   'authentication context')
+        c.argument('environment_name', type=str, help='The name of the environment.')
+        c.argument('artifact_path', type=str, help='The path of the artifact.')
 
     with self.argument_context('devcenter dev catalog-item list') as c:
         c.argument('dev_center', type=str, help='The DevCenter to operate on.')
-        c.argument('devcenter_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter requests.')
-        c.argument('project_name', type=str, help='The Project upon which to execute operations.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
         c.argument('top', type=int, help='The maximum number of resources to return from the operation. Example: '
                    '\'$top=10\'.')
-        c.argument('filter_', options_list=['--filter'], type=str, help='An OData $filter clause to apply to the '
-                   'operation.')
+
+    with self.argument_context('devcenter dev catalog-item show') as c:
+        c.argument('dev_center', type=str, help='The DevCenter to operate on.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
+        c.argument('top', type=int, help='The maximum number of resources to return from the operation. Example: '
+                   '\'$top=10\'.')
+        c.argument('catalog_item_id', type=str, help='The unique id of the catalog item.')
+
+    with self.argument_context('devcenter dev catalog-item-version list') as c:
+        c.argument('dev_center', type=str, help='The DevCenter to operate on.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
+        c.argument('top', type=int, help='The maximum number of resources to return from the operation. Example: '
+                   '\'$top=10\'.')
+        c.argument('catalog_item_id', type=str, help='The unique id of the catalog item.')
+
+    with self.argument_context('devcenter dev catalog-item-version show') as c:
+        c.argument('dev_center', type=str, help='The DevCenter to operate on.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
+        c.argument('top', type=int, help='The maximum number of resources to return from the operation. Example: '
+                   '\'$top=10\'.')
+        c.argument('catalog_item_id', type=str, help='The unique id of the catalog item.')
+        c.argument('version', type=str, help='The version of the catalog item.')
 
     with self.argument_context('devcenter dev environment-type list') as c:
         c.argument('dev_center', type=str, help='The DevCenter to operate on.')
-        c.argument('devcenter_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter requests.')
-        c.argument('project_name', type=str, help='The Project upon which to execute operations.')
+        c.argument('dev_center_dns_suffix', type=str, help='The DNS suffix used as the base for all devcenter '
+                   'requests.')
+        c.argument('project_name', type=str, help='The DevCenter Project upon which to execute operations.')
         c.argument('top', type=int, help='The maximum number of resources to return from the operation. Example: '
                    '\'$top=10\'.')
 
@@ -400,19 +537,19 @@ def load_arguments(self, _):
         c.argument('environment_type_name', options_list=['--name', '-n', '--environment-type-name'], type=str,
                    help='The name of the environment type.', id_part='child_name_1')
 
-    with self.argument_context('devcenter project-environment-type list') as c:
+    with self.argument_context('devcenter admin project-environment-type list') as c:
         c.argument('resource_group_name', resource_group_name_type)
         c.argument('project_name', type=str, help='The name of the project.')
         c.argument('top', type=int, help='The maximum number of resources to return from the operation. Example: '
                    '\'$top=10\'.')
 
-    with self.argument_context('devcenter project-environment-type show') as c:
+    with self.argument_context('devcenter admin project-environment-type show') as c:
         c.argument('resource_group_name', resource_group_name_type)
         c.argument('project_name', type=str, help='The name of the project.', id_part='name')
         c.argument('environment_type_name', type=str, help='The name of the environment type.',
                    id_part='child_name_1')
 
-    with self.argument_context('devcenter project-environment-type create') as c:
+    with self.argument_context('devcenter admin project-environment-type create') as c:
         c.argument('resource_group_name', resource_group_name_type)
         c.argument('project_name', type=str, help='The name of the project.')
         c.argument('environment_type_name', type=str, help='The name of the environment type.')
@@ -439,7 +576,7 @@ def load_arguments(self, _):
                    'objects ({}) in requests. Expected value: json-string/json-file/@json-file.',
                    arg_group='Identity')
 
-    with self.argument_context('devcenter project-environment-type update') as c:
+    with self.argument_context('devcenter admin project-environment-type update') as c:
         c.argument('resource_group_name', resource_group_name_type)
         c.argument('project_name', type=str, help='The name of the project.', id_part='name')
         c.argument('environment_type_name', type=str, help='The name of the environment type.',
@@ -465,7 +602,7 @@ def load_arguments(self, _):
                    'objects ({}) in requests. Expected value: json-string/json-file/@json-file.',
                    arg_group='Identity')
 
-    with self.argument_context('devcenter project-environment-type delete') as c:
+    with self.argument_context('devcenter admin project-environment-type delete') as c:
         c.argument('resource_group_name', resource_group_name_type)
         c.argument('project_name', type=str, help='The name of the project.', id_part='name')
         c.argument('environment_type_name', type=str, help='The name of the environment type.',

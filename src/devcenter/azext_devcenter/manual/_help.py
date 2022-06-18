@@ -11,167 +11,180 @@ helps['devcenter admin'] = """
     short-summary: "Manages DevCenter admin resources"
 """
 
-helps['devcenter dev'] = """
-    type: group
-    short-summary: "Manage DevCenter developer resources such as DevBox and Environments."
-"""
-
 helps['devcenter dev project'] = """
     type: group
-    short-summary: "Manage developer projects"
+    short-summary: Manage project with devcenter
 """
 
 helps['devcenter dev project list'] = """
     type: command
-    short-summary: "Lists all projects in a devcenter"
+    short-summary: "Lists all projects."
     examples:
       - name: Project_ListByDevCenter
         text: |-
-               az devcenter dev project list --dev-center "{devCenter}"
+               az devcenter project list --dev-center "{devCenter}" --dev-center-dns-suffix "devcenter.azure.com"
+"""
+
+helps['devcenter dev project show'] = """
+    type: command
+    short-summary: "Gets a project."
+    examples:
+      - name: Project_Get
+        text: |-
+               az devcenter project show --dev-center "{devCenter}" --dev-center-dns-suffix "devcenter.azure.com" \
+--name "{projectName}"
 """
 
 helps['devcenter dev pool'] = """
     type: group
-    short-summary: "Manage developer pools"
+    short-summary: Manage pool with devcenter
 """
 
 helps['devcenter dev pool list'] = """
     type: command
     short-summary: "Lists available pools."
     examples:
-      - name: Pool_List
+      - name: listPools
         text: |-
-               az devcenter dev pool list --project-name "{projectName}" --dev-center "{devCenter}"
+               az devcenter pool list --dev-center "{devCenter}" --dev-center-dns-suffix "devcenter.azure.com" \
+--project-name "{projectName}"
 """
 
 helps['devcenter dev pool show'] = """
     type: command
-    short-summary: "Gets a machine pool."
+    short-summary: "Gets a pool."
     examples:
-      - name: Pool_Get
+      - name: Pools_Get
         text: |-
-               az devcenter dev pool show --name "{poolName}" --project-name "{projectName}" --dev-center "{devCenter}"
+               az devcenter pool show --dev-center "{devCenter}" --dev-center-dns-suffix "devcenter.azure.com" --name \
+"{poolName}" --project-name "{projectName}"
+"""
+
+helps['devcenter dev schedule'] = """
+    type: group
+    short-summary: Manage schedule with devcenter
+"""
+
+helps['devcenter dev schedule list'] = """
+    type: command
+    short-summary: "Lists available schedules for a pool."
+    examples:
+      - name: listSchedules
+        text: |-
+               az devcenter schedule list --dev-center "{devCenter}" --dev-center-dns-suffix "devcenter.azure.com" \
+--pool-name "{poolName}" --project-name "{projectName}"
+"""
+
+helps['devcenter dev schedule show'] = """
+    type: command
+    short-summary: "Gets a schedule."
+    examples:
+      - name: Schedule_Get
+        text: |-
+               az devcenter schedule show --dev-center "{devCenter}" --dev-center-dns-suffix "devcenter.azure.com" \
+--pool-name "{poolName}" --project-name "{projectName}" --name "{scheduleName}"
 """
 
 helps['devcenter dev dev-box'] = """
     type: group
-    short-summary: Manages Dev Boxes
-"""
-
-helps['devcenter dev dev-box create'] = """
-    type: command
-    short-summary: "Creates or updates a virtual machine."
-    examples:
-      - name: VirtualMachine_Create
-        text: |-
-               az devcenter dev dev-box create --name "MyDevBox" --pool-name "LargeDevWorkStationPool" --project-name "{projectName}" --dev-center "{devCenter}"
-"""
-
-helps['devcenter dev dev-box delete'] = """
-    type: command
-    short-summary: "Deletes a virtual machine."
-    examples:
-      - name: VirtualMachine_Delete
-        text: |-
-               az devcenter dev dev-box delete --name "MyDevBox" --project-name "{projectName}" --dev-center "{devCenter}"
-"""
-
-helps['devcenter dev dev-box get-remote-connection'] = """
-    type: command
-    short-summary: "Gets a remote connection information for the virtual machine."
-    examples:
-      - name: VirtualMachine_GetRemoteConnection
-        text: |-
-               az devcenter dev dev-box get-remote-connection --name "MyDevBox" --project-name "{projectName}" --dev-center "{devCenter}"
+    short-summary: Manage dev box with devcenter
 """
 
 helps['devcenter dev dev-box list'] = """
     type: command
-    short-summary: "Lists Virtual Machines that the caller has access to in the DevCenter."
+    short-summary: "Lists Dev Boxes in the project for a particular user. And Lists Dev Boxes in the Dev Center for a \
+particular user. And Lists Dev Boxes that the caller has access to in the DevCenter."
     examples:
-      - name: VirtualMachine_List
+      - name: DevBox_ListByUserByProject
         text: |-
-               az devcenter dev dev-box list --dev-center "{devCenter}"    
-      - name: VirtualMachine_ListByUser
+               az devcenter dev-box list --dev-center "{devCenter}" --dev-center-dns-suffix "devcenter.azure.com" \
+--project-name "{projectName}" --user-id "me"
+      - name: DevBox_ListByUserByProject
         text: |-
-               az devcenter dev dev-box list --dev-center "{devCenter}" --project-name "{projectName}" --user-id "me"       
+               az devcenter dev-box list --dev-center "{devCenter}" --dev-center-dns-suffix "devcenter.azure.com" \
+--user-id "me"
+      - name: DevBox_List
+        text: |-
+               az devcenter dev-box list --dev-center "{devCenter}" --dev-center-dns-suffix "devcenter.azure.com"
 """
 
 helps['devcenter dev dev-box show'] = """
     type: command
-    short-summary: "Gets a virtual machine."
+    short-summary: "Gets a Dev Box."
     examples:
-      - name: VirtualMachine_Get
+      - name: getDevBoxForUser
         text: |-
-               az devcenter dev dev-box show --name "MyDevBox" --project-name "{projectName}" --dev-center "{devCenter}"
+               az devcenter dev-box show --name "MyDevBox" --dev-center "{devCenter}" --dev-center-dns-suffix \
+"devcenter.azure.com" --project-name "{projectName}" --user-id "me"
+"""
+
+helps['devcenter dev dev-box create'] = """
+    type: command
+    short-summary: "Creates or updates a Dev Box."
+    examples:
+      - name: createDevBox
+        text: |-
+               az devcenter dev-box create --pool-name "LargeDevWorkStationPool" --name "MyDevBox" --dev-center \
+"{devCenter}" --dev-center-dns-suffix "devcenter.azure.com" --project-name "{projectName}" --user-id "me"
+"""
+
+helps['devcenter dev dev-box delete'] = """
+    type: command
+    short-summary: "Deletes a Dev Box."
+    examples:
+      - name: deleteDevBox
+        text: |-
+               az devcenter dev-box delete --name "MyDevBox" --dev-center "{devCenter}" --dev-center-dns-suffix \
+"devcenter.azure.com" --project-name "{projectName}" --user-id "me"
+"""
+
+helps['devcenter dev dev-box get-remote-connection'] = """
+    type: command
+    short-summary: "Gets RDP Connection info."
+    examples:
+      - name: DevBox_GetRemoteConnection
+        text: |-
+               az devcenter dev-box get-remote-connection --name "MyDevBox" --dev-center "{devCenter}" \
+--dev-center-dns-suffix "devcenter.azure.com" --project-name "{projectName}" --user-id "me"
 """
 
 helps['devcenter dev dev-box start'] = """
     type: command
-    short-summary: "Starts a Virtual Machine."
+    short-summary: "Starts a Dev Box."
     examples:
-      - name: VirtualMachine_Start
+      - name: startDevBoxForUser
         text: |-
-               az devcenter dev dev-box start --name "MyDevBox" --project-name "{projectName}" --dev-center "{devCenter}"
+               az devcenter dev-box start --name "MyDevBox" --dev-center "{devCenter}" --dev-center-dns-suffix \
+"devcenter.azure.com" --project-name "{projectName}" --user-id "me"
 """
 
 helps['devcenter dev dev-box stop'] = """
     type: command
-    short-summary: "Stops a Virtual machine."
+    short-summary: "Stops a Dev Box."
     examples:
-      - name: VirtualMachine_Stop
+      - name: stopDevBoxForUser
         text: |-
-               az devcenter dev dev-box stop --name "MyDevBox" --project-name "{projectName}" \
- --dev-center "{devCenter}"
+               az devcenter dev-box stop --name "MyDevBox" --dev-center "{devCenter}" --dev-center-dns-suffix \
+"devcenter.azure.com" --project-name "{projectName}" --user-id "me"
 """
 
-helps['devcenter dev catalog-item'] = """
-    type: group
-    short-summary: "Manage developer catalog items"
-"""
-
-helps['devcenter dev catalog-item list'] = """
+helps['devcenter dev dev-box wait'] = """
     type: command
-    short-summary: "Lists all catalog items available for a project."
+    short-summary: Place the CLI in a waiting state until a condition of the devcenter dev-box is met.
     examples:
-      - name: CatalogItem_ListByProject
+      - name: Pause executing next line of CLI script until the devcenter dev-box is successfully created.
         text: |-
-               az devcenter dev catalog-item list --devcenter-dns-suffix "devcenter.azure.net" --project-name "{projectName}" --dev-center "{devCenter}" \
---resource-group "rg1"
-"""
-
-helps['devcenter dev deployment'] = """
-    type: group
-    short-summary: "Manage developer deployments"
-"""
-
-helps['devcenter dev deployment list'] = """
-    type: command
-    short-summary: "Gets an environment's deployment history."
-    examples:
-      - name: Actions_Get
+               az devcenter dev-box wait --name "MyDevBox" --dev-center "{devCenter}" --dev-center-dns-suffix \
+"devcenter.azure.com" --project-name "{projectName}" --user-id "me" --created
+      - name: Pause executing next line of CLI script until the devcenter dev-box is successfully deleted.
         text: |-
-               az devcenter dev deployment list --environment-name "{environmentName}" --project-name "{projectName}" \
---dev-center "{devCenter}" --devcenter-dns-suffix "devcenter.azure.net"
-"""
-
-helps['devcenter dev environment-type'] = """
-    type: group
-    short-summary: "Manage developer environment types"
-"""
-
-helps['devcenter dev environment-type list'] = """
-    type: command
-    short-summary: "Lists all environment types configured for a project."
-    examples:
-      - name: EnvironmentType_List
-        text: |-
-               az devcenter dev environment-type list --project-name "{projectName}" --dev-center "{devCenter}"
+               az devcenter dev-box wait --name "MyDevBox" --dev-center "{devCenter}" --dev-center-dns-suffix \
+"devcenter.azure.com" --project-name "{projectName}" --user-id "me" --deleted
 """
 
 helps['devcenter dev environment'] = """
     type: group
-    short-summary: "Manage developer environments"
+    short-summary: Manage environment with devcenter
 """
 
 helps['devcenter dev environment list'] = """
@@ -180,7 +193,8 @@ helps['devcenter dev environment list'] = """
     examples:
       - name: Environments_ListByProject
         text: |-
-               az devcenter dev environment list --project-name "{projectName}" --dev-center "{devCenter}" --devcenter-dns-suffix "devcenter.azure.net"
+               az devcenter environment list --dev-center "{devCenter}" --dev-center-dns-suffix "devcenter.azure.com" \
+--project-name "{projectName}"
 """
 
 helps['devcenter dev environment show'] = """
@@ -189,8 +203,8 @@ helps['devcenter dev environment show'] = """
     examples:
       - name: Environments_Get
         text: |-
-               az devcenter dev environment show --name "{environmentName}" --project-name "{projectName}" \
---dev-center "{devCenter}" --devcenter-dns-suffix "devcenter.azure.net"
+               az devcenter environment show --dev-center "{devCenter}" --dev-center-dns-suffix "devcenter.azure.com" \
+--name "{environmentName}" --project-name "{projectName}" --user-id "{userId}"
 """
 
 helps['devcenter dev environment create'] = """
@@ -199,10 +213,17 @@ helps['devcenter dev environment create'] = """
     examples:
       - name: Environments_CreateByCatalogItem
         text: |-
-               az devcenter dev environment create --dev-center "{devCenter}" --description "Personal Dev Environment" \
---catalog-item-name "helloworld" --deployment-parameters "{\\"app_name\\":\\"mydevApi\\"}" --environment-type \
-"DevTest" --tags ProjectType="WebApi" Role="Development" Tech="NetCore" --name "{environmentName}" --project-name \
-"{projectName}" --devcenter-dns-suffix "devcenter.azure.net"
+               az devcenter environment create --description "Personal Dev Environment" --catalog-item-name \
+"helloworld" --catalog-name "main" --environment-type "DevTest" --parameters "{\\"functionAppRuntime\\":\\"node\\",\\"s\
+torageAccountType\\":\\"Standard_LRS\\"}" --dev-center "{devCenter}" --dev-center-dns-suffix "devcenter.azure.com" \
+--name "{environmentName}" --project-name "{projectName}" --user-id "{userId}"
+      - name: Environments_CreateWithAutoExpire
+        text: |-
+               az devcenter environment create --description "Personal Dev Environment" --catalog-item-name \
+"helloworld" --catalog-name "main" --environment-type "DevTest" --parameters "{\\"functionAppRuntime\\":\\"node\\",\\"s\
+torageAccountType\\":\\"Standard_LRS\\"}" --scheduled-tasks "{\\"autoExpire\\":{\\"type\\":\\"AutoExpire\\",\\"startTim\
+e\\":\\"2022-01-01T00:01:00Z\\"}}" --dev-center "{devCenter}" --dev-center-dns-suffix "devcenter.azure.com" --name \
+"{environmentName}" --project-name "{projectName}" --user-id "{userId}"
 """
 
 helps['devcenter dev environment update'] = """
@@ -211,9 +232,9 @@ helps['devcenter dev environment update'] = """
     examples:
       - name: Environments_Update
         text: |-
-               az devcenter dev environment update --description "Personal Dev Environment 2" --tags ProjectType="WebApi" \
-Role="Development" Tech="NetCore" --name "{environmentName}" --project-name "{projectName}" --dev-center "{devCenter}" \
---devcenter-dns-suffix "devcenter.azure.net"    
+               az devcenter environment update --description "Personal Dev Environment 2" --dev-center "{devCenter}" \
+--dev-center-dns-suffix "devcenter.azure.com" --name "{environmentName}" --project-name "{projectName}" --user-id \
+"{userId}"
 """
 
 helps['devcenter dev environment delete'] = """
@@ -222,18 +243,174 @@ helps['devcenter dev environment delete'] = """
     examples:
       - name: Environments_Delete
         text: |-
-               az devcenter dev environment delete --name "{environmentName}" --project-name "{projectName}" \
---dev-center "{devCenter} --devcenter-dns-suffix "devcenter.azure.net"
+               az devcenter environment delete --dev-center "{devCenter}" --dev-center-dns-suffix \
+"devcenter.azure.com" --name "{environmentName}" --project-name "{projectName}" --user-id "{userId}"
 """
 
-helps['devcenter dev environment deploy'] = """
+helps['devcenter dev environment list-by-project'] = """
     type: command
-    short-summary: "Deploys an environment's resources."
+    short-summary: "Lists the environments for a project and user."
     examples:
-      - name: Environments_Deploy
+      - name: Environments_ListByProject
         text: |-
-               az devcenter dev environment deploy --name "{environmentName}" --project-name "{projectName}" \
---dev-center "{devCenter} --devcenter-dns-suffix "devcenter.azure.net"
+               az devcenter environment list-by-project --dev-center "{devCenter}" --dev-center-dns-suffix \
+"devcenter.azure.com" --project-name "{projectName}" --user-id "{userId}"
+"""
+
+helps['devcenter dev environment wait'] = """
+    type: command
+    short-summary: Place the CLI in a waiting state until a condition of the devcenter environment is met.
+    examples:
+      - name: Pause executing next line of CLI script until the devcenter environment is successfully created.
+        text: |-
+               az devcenter environment wait --dev-center "{devCenter}" --dev-center-dns-suffix "devcenter.azure.com" \
+--name "{environmentName}" --project-name "{projectName}" --user-id "{userId}" --created
+      - name: Pause executing next line of CLI script until the devcenter environment is successfully updated.
+        text: |-
+               az devcenter environment wait --dev-center "{devCenter}" --dev-center-dns-suffix "devcenter.azure.com" \
+--name "{environmentName}" --project-name "{projectName}" --user-id "{userId}" --updated
+      - name: Pause executing next line of CLI script until the devcenter environment is successfully deleted.
+        text: |-
+               az devcenter environment wait --dev-center "{devCenter}" --dev-center-dns-suffix "devcenter.azure.com" \
+--name "{environmentName}" --project-name "{projectName}" --user-id "{userId}" --deleted
+"""
+
+helps['devcenter dev action'] = """
+    type: group
+    short-summary: Manage action with devcenter
+"""
+
+helps['devcenter dev action list'] = """
+    type: command
+    short-summary: "Gets an environment's actions."
+    examples:
+      - name: Actions_ListByEnvironment
+        text: |-
+               az devcenter action list --dev-center "{devCenter}" --dev-center-dns-suffix "devcenter.azure.com" \
+--environment-name "{environmentName}" --project-name "{projectName}" --user-id "{userId}"
+"""
+
+helps['devcenter dev action show'] = """
+    type: command
+    short-summary: "Gets an environment's deployment history."
+    examples:
+      - name: Actions_Get
+        text: |-
+               az devcenter action show --action-id "{actionId}" --dev-center "{devCenter}" --dev-center-dns-suffix \
+"devcenter.azure.com" --environment-name "{environmentName}" --project-name "{projectName}" --user-id "{userId}"
+"""
+
+helps['devcenter dev action create'] = """
+    type: command
+    short-summary: "Creates and executes an action."
+    examples:
+      - name: Actions_Create
+        text: |-
+               az devcenter action create --action-id "deploy" --parameters "{\\"functionAppRuntime\\":\\"node\\",\\"st\
+orageAccountType\\":\\"Standard_LRS\\"}" --dev-center "{devCenter}" --dev-center-dns-suffix "devcenter.azure.com" \
+--environment-name "{environmentName}" --project-name "{projectName}" --user-id "{userId}"
+"""
+
+helps['devcenter dev action wait'] = """
+    type: command
+    short-summary: Place the CLI in a waiting state until a condition of the devcenter action is met.
+    examples:
+      - name: Pause executing next line of CLI script until the devcenter action is successfully created.
+        text: |-
+               az devcenter action wait --action-id "{actionId}" --dev-center "{devCenter}" --dev-center-dns-suffix \
+"devcenter.azure.com" --environment-name "{environmentName}" --project-name "{projectName}" --user-id "{userId}" \
+--created
+"""
+
+helps['devcenter dev artifact'] = """
+    type: group
+    short-summary: Manage artifact with devcenter
+"""
+
+helps['devcenter dev artifact list'] = """
+    type: command
+    short-summary: "Lists the artifacts for an environment at a specified path, or returns the file at the path. And \
+Lists the artifacts for an environment."
+    examples:
+      - name: Artifacts_Get
+        text: |-
+               az devcenter artifact list --artifact-path "{artifactPath}" --dev-center "{devCenter}" \
+--dev-center-dns-suffix "devcenter.azure.com" --environment-name "{environmentName}" --project-name "{projectName}" \
+--user-id "{userId}"
+      - name: Artifacts_ListByEnvironment
+        text: |-
+               az devcenter artifact list --dev-center "{devCenter}" --dev-center-dns-suffix "devcenter.azure.com" \
+--environment-name "{environmentName}" --project-name "{projectName}" --user-id "{userId}"
+"""
+
+helps['devcenter dev catalog-item'] = """
+    type: group
+    short-summary: Manage catalog item with devcenter
+"""
+
+helps['devcenter dev catalog-item list'] = """
+    type: command
+    short-summary: "Lists latest version of all catalog items available for a project."
+    examples:
+      - name: CatalogItems_ListByProject
+        text: |-
+               az devcenter catalog-item list --dev-center "{devCenter}" --dev-center-dns-suffix "devcenter.azure.com" \
+--project-name "{projectName}"
+"""
+
+helps['devcenter dev catalog-item'] = """
+    type: group
+    short-summary: Manage catalog item with devcenter
+"""
+
+helps['devcenter dev catalog-item show'] = """
+    type: command
+    short-summary: "Get a catalog item from a project."
+    examples:
+      - name: CatalogItems_Get
+        text: |-
+               az devcenter catalog-item show --dev-center "{devCenter}" --dev-center-dns-suffix "devcenter.azure.com" \
+--project-name "{projectName}"
+"""
+
+helps['devcenter dev catalog-item-version'] = """
+    type: group
+    short-summary: Manage catalog item version with devcenter
+"""
+
+helps['devcenter dev catalog-item-version list'] = """
+    type: command
+    short-summary: "List all versions of a catalog item from a project."
+    examples:
+      - name: CatalogItemVersions_ListByProject
+        text: |-
+               az devcenter catalog-item-version list --dev-center "{devCenter}" --dev-center-dns-suffix \
+"devcenter.azure.com" --project-name "{projectName}"
+"""
+
+helps['devcenter dev catalog-item-version show'] = """
+    type: command
+    short-summary: "Get a specific catalog item version from a project."
+    examples:
+      - name: CatalogItemVersion_Get
+        text: |-
+               az devcenter catalog-item-version show --dev-center "{devCenter}" --dev-center-dns-suffix \
+"devcenter.azure.com" --project-name "{projectName}"
+"""
+
+helps['devcenter dev environment-type'] = """
+    type: group
+    short-summary: Manage environment type with devcenter
+"""
+
+helps['devcenter dev environment-type list'] = """
+    type: command
+    short-summary: "Lists all environment types configured for a project."
+    examples:
+      - name: EnvironmentType_ListByProject
+        text: |-
+               az devcenter environment-type list --dev-center "{devCenter}" --dev-center-dns-suffix \
+"devcenter.azure.com" --project-name "{projectName}"
 """
 
 #control plane
