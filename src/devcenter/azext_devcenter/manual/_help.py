@@ -455,7 +455,7 @@ helps['devcenter admin dev-center create'] = """
 --resource-group "rg1"
       - name: DevCenters_CreateWithUserIdentity
         text: |-
-               az devcenter admin dev-center create --identity-type "UserAssigned" --user-assigned-identities \
+               az devcenter admin dev-center create --identity-type "UserAssigned" --user-assigned-identity \
 "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/identityGroup/providers/Microsoft.ManagedIdenti\
 ty/userAssignedIdentities/testidentity1" --location "centralus" --tags CostCode="12345" --name "Contoso" \
 --resource-group "rg1"
@@ -978,7 +978,7 @@ helps['devcenter admin devbox-definition update'] = """
       - name: DevBoxDefinitions_Patch
         text: |-
                az devcenter admin devbox-definition update --image-reference id="/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c5\
-8ffff/resourceGroups/Example/providers/Microsoft.Fidalgo/galleries/contosogallery/images/exampleImage/version/2.0.0" \
+8ffff/resourceGroups/Example/providers/Microsoft.DevCenter/galleries/contosogallery/images/exampleImage/version/2.0.0" \
 --dev-box-definition-name "WebDevBox" --dev-center-name "Contoso" --resource-group "rg1"
 """
 
