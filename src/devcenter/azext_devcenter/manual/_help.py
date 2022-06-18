@@ -1069,7 +1069,7 @@ helps['devcenter admin pool create'] = """
         text: |-
                az devcenter pool create --location "centralus" --dev-box-definition-name "WebDevBox" \
 --network-connection-name "Network1-westus2" --pool-name "{poolName}" --project-name "{projectName}" --resource-group \
-"rg1"
+"rg1" --license-type Windows_Client --local-administrator Enabled
 """
 
 helps['devcenter admin pool update'] = """

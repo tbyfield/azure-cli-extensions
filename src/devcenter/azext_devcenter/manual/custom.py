@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
+from threading import local
 from knack.util import CLIError
 from azure.cli.core.util import sdk_no_wait
 
@@ -40,18 +41,20 @@ def devcenter_pool_create(client,
                         project_name,
                         pool_name,
                         location,
+                        dev_box_definition_name,
+                        network_connection_name,
+                        local_administrator,
+                        license_type,
                         tags=None,
-                        dev_box_definition_name=None,
-                        network_connection_name=None,
                         no_wait=False):
     body = {}
     if tags is not None:
         body['tags'] = tags
     body['location'] = location
-    if dev_box_definition_name is not None:
-        body['dev_box_definition_name'] = dev_box_definition_name
-    if network_connection_name is not None:
-        body['network_connection_name'] = network_connection_name
+    body['dev_box_definition_name'] = dev_box_definition_name
+    body['network_connection_name'] = network_connection_name
+    body['license_type'] = license_type
+    body['local_administrator'] = local_administrator
     return sdk_no_wait(no_wait,
                        client.begin_create_or_update,
                        resource_group_name=resource_group_name,
@@ -67,6 +70,8 @@ def devcenter_pool_update(client,
                         location=None,
                         dev_box_definition_name=None,
                         network_connection_name=None,
+                        local_administrator=None,
+                        license_type=None,
                         no_wait=False):
     body = {}
     if tags is not None:
@@ -77,6 +82,10 @@ def devcenter_pool_update(client,
         body['dev_box_definition_name'] = dev_box_definition_name
     if network_connection_name is not None:
         body['network_connection_name'] = network_connection_name
+    if license_type is not None:
+        body['license_type'] = license_type
+    if local_administrator is not None:
+        body['local_administrator'] = local_administrator
     return sdk_no_wait(no_wait,
                        client.begin_update,
                        resource_group_name=resource_group_name,
