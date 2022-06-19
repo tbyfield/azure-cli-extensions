@@ -92,6 +92,35 @@ def devcenter_pool_update(client,
                        pool_name=pool_name,
                        body=body)
 
+def devcenter_schedule_create(client,
+                              resource_group_name,
+                              project_name,
+                              pool_name,
+                              schedule_name,
+                              schedule_type,
+                              frequency,
+                              time=None,
+                              time_zone=None,
+                              state=None,
+                              no_wait=False):
+    body = {}
+    body['type_properties_type'] = schedule_type #"StopDevBox"
+    body['frequency'] = frequency #"Daily"
+    if time is not None:
+        body['time'] = time
+    if time_zone is not None:
+        body['time_zone'] = time_zone
+    if state is not None:
+        body['state'] = state
+    return sdk_no_wait(no_wait,
+                       client.begin_create_or_update,
+                       resource_group_name=resource_group_name,
+                       project_name=project_name,
+                       pool_name=pool_name,
+                       schedule_name=schedule_name,
+                       body=body)
+
+
 # dataplane commands
 def devcenter_project_list_dp(client,
                            dev_center,

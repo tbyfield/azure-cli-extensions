@@ -858,10 +858,10 @@ def load_arguments(self, _):
         c.argument('pool_name', type=str, help='Name of the pool.')
         c.argument('schedule_name', options_list=['--name', '-n', '--schedule-name'], type=str, help='The name of the '
                    'schedule that uniquely identifies it.')
-        c.argument('top', type=int, help='The maximum number of resources to return from the operation. Example: '
-                   '\'$top=10\'.')
-        c.argument('time', type=str, help='The target time to trigger the action. The format is HH:MM.')
-        c.argument('time_zone', type=str, help='The IANA timezone id at which the schedule should execute.')
+        c.argument('schedule_type', required=True, arg_type=get_enum_type(['StopDevBox']), help='The type of schedule.')
+        c.argument('frequency', required=True, arg_type=get_enum_type(['Daily']), help='The frequency the schedule will execute.')
+        c.argument('time', required=True, type=str, help='The target time to trigger the action. The format is HH:MM.')
+        c.argument('time_zone', required=True, type=str, help='The IANA timezone id at which the schedule should execute.')
         c.argument('state', arg_type=get_enum_type(['Enabled', 'Disabled']), help='Indicates whether or not this '
                    'scheduled task is enabled.')
 
