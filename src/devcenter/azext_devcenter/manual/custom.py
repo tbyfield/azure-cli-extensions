@@ -14,7 +14,6 @@ def devcenter_dev_center_create(client,
                               dev_center_name,
                               location,
                               tags=None,
-                              network_connections=None,
                               identity_type="SystemAssigned",
                               user_assigned_identity=None,
                               no_wait=False):
