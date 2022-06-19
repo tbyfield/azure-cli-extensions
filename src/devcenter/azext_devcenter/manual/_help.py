@@ -622,8 +622,8 @@ helps['devcenter admin attached-network create'] = """
       - name: AttachedNetworks_Create
         text: |-
                az devcenter admin attached-network create --attached-network-connection-name "{attachedNetworkConnectionName}" \
---network-connection-resource-id "/subscriptions/{subscriptionId}/resourceGroups/rg1/providers/Microsoft.DevCenter/Networ\
-kSettings/{networkConnectionName}" --dev-center-name "Contoso" --resource-group "rg1"
+--network-connection-id "/subscriptions/{subscriptionId}/resourceGroups/rg1/providers/Microsoft.DevCenter/networ\
+kConnections/{networkConnectionName}" --dev-center-name "Contoso" --resource-group "rg1"
 """
 
 helps['devcenter admin attached-network update'] = """
@@ -1191,10 +1191,10 @@ helps['devcenter admin network-connection list'] = """
     type: command
     short-summary: "Lists network settings in a resource group And Lists network settings in a subscription."
     examples:
-      - name: NetworkSettings_ListByResourceGroup
+      - name: NetworkConnections_ListByResourceGroup
         text: |-
                az devcenter admin network-connection list --resource-group "rg1"
-      - name: NetworkSettings_ListBySubscription
+      - name: NetworkConnections_ListBySubscription
         text: |-
                az devcenter admin network-connection list
 """
@@ -1203,7 +1203,7 @@ helps['devcenter admin network-connection show'] = """
     type: command
     short-summary: "Gets a network settings resource."
     examples:
-      - name: NetworkSettings_Get
+      - name: NetworkConnections_Get
         text: |- 
                az devcenter admin network-connection show --name "{networkSettingName}" --resource-group "rg1"
 """
@@ -1212,12 +1212,18 @@ helps['devcenter admin network-connection create'] = """
     type: command
     short-summary: "Create a Network Settings resource."
     examples:
-      - name: NetworkSettings_CreateOrUpdate
+      - name: NetworkConnections_CreateHybridJoined
         text: |-
                az devcenter admin network-connection create --location "centralus" --domain-join-type "HybridAzureADJoin" \
 --domain-name "mydomaincontroller.local" --domain-password "Password value for user" --domain-username \
 "testuser@mydomaincontroller.local" --networking-resource-group-id "/subscriptions/00000000-0000-0000-0000-000000000000\
 /resourceGroups/ExampleRG" --subnet-id "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/ExampleRG/pr\
+oviders/Microsoft.Network/virtualNetworks/ExampleVNet/subnets/default" --name "{networkSettingName}" --resource-group \
+"rg1"
+      - name: NetworkConnections_CreateAzureJoined
+        text: |-
+               az devcenter admin network-connection create --location "centralus" --domain-join-type "AzureADJoin" \
+--networking-resource-group-name "NetworkInterfacesRG" --subnet-id "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/ExampleRG/pr\
 oviders/Microsoft.Network/virtualNetworks/ExampleVNet/subnets/default" --name "{networkSettingName}" --resource-group \
 "rg1"
 """
@@ -1226,7 +1232,7 @@ helps['devcenter admin network-connection update'] = """
     type: command
     short-summary: "Partially updates Network Settings."
     examples:
-      - name: NetworkSettings_Update
+      - name: NetworkConnections_Update
         text: |-
                az devcenter admin network-connection update --domain-password "New Password value for user" --name \
 "{networkSettingName}" --resource-group "rg1"
@@ -1236,7 +1242,7 @@ helps['devcenter admin network-connection delete'] = """
     type: command
     short-summary: "Deletes a Network Settings resource."
     examples:
-      - name: NetworkSettings_Delete
+      - name: NetworkConnections_Delete
         text: |-
                az devcenter admin network-connection delete --name "{networkSettingName}" --resource-group "rg1"
 """
@@ -1245,7 +1251,7 @@ helps['devcenter admin network-connection show-health-detail'] = """
     type: command
     short-summary: "Gets health check status details."
     examples:
-      - name: NetworkSettings_GetHealthDetails
+      - name: NetworkConnections_GetHealthDetails
         text: |-
                az devcenter admin network-connection show-health-detail --name "{networkSettingName}" --resource-group "rg1"
 """
