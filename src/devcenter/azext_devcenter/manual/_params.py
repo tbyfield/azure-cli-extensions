@@ -832,7 +832,8 @@ def load_arguments(self, _):
             validator=get_default_location_from_resource_group,
         )
         c.argument(
-            "identity_type",
+            "type_",
+            options_list=["--identity-type"],
             arg_type=get_enum_type(
                 [
                     "SystemAssigned",
@@ -850,7 +851,7 @@ def load_arguments(self, _):
         c.argument(
             "user_assigned_identities",
             options_list=["--user-assigned-identities", "-u"],
-            type=str,
+            type=validate_file_or_dict,
             help="The list of user identities "
             "associated with the resource. The user identity references will be an ARM resource id "
             "in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microso"

@@ -23,11 +23,6 @@ def step_dev_center_create(test, checks=None):
              '--name "{myDevCenter}" '
              '--resource-group "{rg}"',
              checks=[])
-    test.cmd('az devcenter admin devcenter wait --created '
-             '--name "{myDevCenter}" '
-             '--resource-group "{rg}"',
-             checks=checks)
-
 
 # EXAMPLE: /DevCenters/put/DevCenters_CreateWithUserIdentity
 @try_manual
@@ -35,19 +30,14 @@ def step_dev_center_create2(test, checks=None):
     if checks is None:
         checks = []
     test.cmd('az devcenter admin devcenter create '
-             '--type "UserAssigned" '
-             '--user-assigned-identities "{{\\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/ident'
-             'ityGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity1\\":{{}}}}" '
+             '--identity-type "UserAssigned" '
+             '--user-assigned-identities "{{\\"/subscriptions/3de261df-f2d8-4c00-a0ee-a0be30f1e48e/resourceGroups/cli-testing'
+             '/providers/Microsoft.ManagedIdentity/userAssignedIdentities/cli-test\\":{{}}}}" '
              '--location "westus3" '
              '--tags CostCode="12345" '
-             '--name "{myDevCenter}" '
+             '--name "{myDevCenter2}" '
              '--resource-group "{rg}"',
              checks=[])
-    test.cmd('az devcenter admin devcenter wait --created '
-             '--name "{myDevCenter}" '
-             '--resource-group "{rg}"',
-             checks=checks)
-
 
 # EXAMPLE: /DevCenters/get/DevCenters_Get
 @try_manual
@@ -86,6 +76,7 @@ def step_dev_center_update(test, checks=None):
     if checks is None:
         checks = []
     test.cmd('az devcenter admin devcenter update '
+            '--location "centralus" '
              '--tags CostCode="12345" '
              '--name "{myDevCenter}" '
              '--resource-group "{rg}"',
@@ -976,81 +967,6 @@ def step_usage_list(test, checks=None):
     test.cmd('az devcenter usage list '
              '--location "westus"',
              checks=checks)
-# EXAMPLE: /DevCenters/put/DevCenters_Create
-@try_manual
-def step_dev_center_create(test, checks=None):
-    if checks is None:
-        checks = []
-    test.cmd('az devcenter admin devcenter create '
-             '--location "westus3" '
-             '--tags CostCode="12345" '
-             '--name "{myDevCenter}" '
-             '--resource-group "{rg}"',
-             checks=[checks])
-
-
-# EXAMPLE: /DevCenters/put/DevCenters_CreateWithUserIdentity
-@try_manual
-def step_dev_center_create2(test, checks=None):
-    if checks is None:
-        checks = []
-    test.cmd('az devcenter admin devcenter create '
-             '--type "UserAssigned" '
-             '--user-assigned-identities "{{\\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/ident'
-             'ityGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity1\\":{{}}}}" '
-             '--location "westus3" '
-             '--tags CostCode="12345" '
-             '--name "{myDevCenter}" '
-             '--resource-group "{rg}"',
-             checks=[])
-    test.cmd('az devcenter admin devcenter wait --created '
-             '--name "{myDevCenter}" '
-             '--resource-group "{rg}"',
-             checks=[])
-
-
-# EXAMPLE: /DevCenters/get/DevCenters_Get
-@try_manual
-def step_dev_center_show(test, checks=None):
-    if checks is None:
-        checks = []
-    test.cmd('az devcenter admin devcenter show '
-             '--name "{myDevCenter}" '
-             '--resource-group "{rg}"',
-             checks=checks)
-
-
-# EXAMPLE: /DevCenters/get/DevCenters_ListByResourceGroup
-@try_manual
-def step_dev_center_list(test, checks=None):
-    if checks is None:
-        checks = []
-    test.cmd('az devcenter admin devcenter list '
-             '--resource-group "{rg}"',
-             checks=checks)
-
-
-# EXAMPLE: /DevCenters/get/DevCenters_ListBySubscription
-@try_manual
-def step_dev_center_list2(test, checks=None):
-    if checks is None:
-        checks = []
-    test.cmd('az devcenter admin devcenter list '
-             '-g ""',
-             checks=checks)
-
-
-# EXAMPLE: /DevCenters/patch/DevCenters_Update
-@try_manual
-def step_dev_center_update(test, checks=None):
-    if checks is None:
-        checks = []
-    test.cmd('az devcenter admin devcenter update '
-             '--tags CostCode="12345" '
-             '--name "{myDevCenter}" '
-             '--resource-group "{rg}"',
-             checks=checks)
-
 
 # EXAMPLE: /AttachedNetworks/put/AttachedNetworks_Create
 @try_manual
