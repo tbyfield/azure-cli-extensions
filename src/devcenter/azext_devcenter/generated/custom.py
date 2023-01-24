@@ -989,7 +989,7 @@ def devcenter_network_connection_create(client,
                        body=body)
 
 
-def devcenter_network_connection_update(client,
+def devcenter_network_connection_update(instance,
                                         resource_group_name,
                                         network_connection_name,
                                         tags=None,
@@ -1000,26 +1000,24 @@ def devcenter_network_connection_update(client,
                                         domain_username=None,
                                         domain_password=None,
                                         no_wait=False):
-    body = {}
     if tags is not None:
-        body['tags'] = tags
-    if location is not None:
-        body['location'] = location
+        instance.tags = tags
+    print(location)
+    if getattr(location, 'is_default', None) is None and location is not None:
+        print(instance.__dict__)
+        print("n")
+        instance.location = location
     if subnet_id is not None:
-        body['subnet_id'] = subnet_id
+        instance.subnet_id = subnet_id
     if domain_name is not None:
-        body['domain_name'] = domain_name
+        instance.domain_name = domain_name
     if organization_unit is not None:
-        body['organization_unit'] = organization_unit
+        instance.organization_unit = organization_unit
     if domain_username is not None:
-        body['domain_username'] = domain_username
+        instance.domain_username = domain_username
     if domain_password is not None:
-        body['domain_password'] = domain_password
-    return sdk_no_wait(no_wait,
-                       client.begin_update,
-                       resource_group_name=resource_group_name,
-                       network_connection_name=network_connection_name,
-                       body=body)
+        instance.domain_password = domain_password
+    return instance
 
 
 def devcenter_network_connection_delete(client,

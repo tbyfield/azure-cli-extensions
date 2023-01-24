@@ -445,9 +445,10 @@ def load_command_table(self, _):
         g.custom_command(
             "create", "devcenter_network_connection_create", supports_no_wait=True
         )
-        g.custom_command(
-            "update", "devcenter_network_connection_update", supports_no_wait=True
-        )
+        # g.custom_command(
+        #     "update", "devcenter_network_connection_update", supports_no_wait=True
+        # )
+        g.generic_update_command('update', supports_no_wait=True, setter_arg_name='body', setter_name='begin_create_or_update',custom_func_name='devcenter_network_connection_update')
         g.custom_command(
             "delete",
             "devcenter_network_connection_delete",
