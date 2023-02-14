@@ -68,7 +68,7 @@ class ProjectOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        api_version = "2022-11-11-preview"
+        api_version = "2023-06-01-privatepreview"
         accept = "application/json"
 
         def prepare_request(next_link=None):
@@ -146,7 +146,7 @@ class ProjectOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        api_version = "2022-11-11-preview"
+        api_version = "2023-06-01-privatepreview"
         accept = "application/json"
 
         # Construct URL
