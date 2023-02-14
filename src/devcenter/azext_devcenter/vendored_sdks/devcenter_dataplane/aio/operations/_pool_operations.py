@@ -66,7 +66,7 @@ class PoolOperations:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        api_version = "2022-11-11-preview"
+        api_version = "2023-06-01-privatepreview"
         accept = "application/json"
 
         def prepare_request(next_link=None):
@@ -76,7 +76,7 @@ class PoolOperations:
 
             if not next_link:
                 # Construct URL
-                url = self.list_pools.metadata['url']  # type: ignore
+                url = self.list.metadata['url']  # type: ignore
                 path_format_arguments = {
                     'endpoint': self._serialize.url("self._config.endpoint", self._config.endpoint, 'str', skip_quote=True),
                     'projectName': self._serialize.url("self._config.project_name", self._config.project_name, 'str', max_length=63, min_length=3, pattern=r'^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$'),
@@ -126,7 +126,7 @@ class PoolOperations:
         )
     list.metadata = {'url': '/projects/{projectName}/pools'}  # type: ignore
 
-    async def get_pool(
+    async def get(
         self,
         pool_name: str,
         **kwargs
@@ -145,15 +145,15 @@ class PoolOperations:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        api_version = "2022-11-11-preview"
+        api_version = "2023-06-01-privatepreview"
         accept = "application/json"
 
         # Construct URL
-        url = self.get_pool.metadata['url']  # type: ignore
+        url = self.get.metadata['url']  # type: ignore
         path_format_arguments = {
             'endpoint': self._serialize.url("self._config.endpoint", self._config.endpoint, 'str', skip_quote=True),
-            'poolName': self._serialize.url("pool_name", pool_name, 'str', max_length=63, min_length=3, pattern=r'^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$'),
             'projectName': self._serialize.url("self._config.project_name", self._config.project_name, 'str', max_length=63, min_length=3, pattern=r'^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$'),
+            'poolName': self._serialize.url("pool_name", pool_name, 'str', max_length=63, min_length=3, pattern=r'^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$'),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -179,4 +179,4 @@ class PoolOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_pool.metadata = {'url': '/projects/{projectName}/pools/{poolName}'}  # type: ignore
+    get.metadata = {'url': '/projects/{projectName}/pools/{poolName}'}  # type: ignore

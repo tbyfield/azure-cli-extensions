@@ -57,12 +57,12 @@ def cf_environment_dp(cli_ctx, dev_center, *_):
     return cf_devcenter_dataplane(cli_ctx, dev_center).environments
 
 
-def cf_catalog_item_dp(cli_ctx, dev_center, *_):
-    return cf_devcenter_dataplane(cli_ctx, dev_center).catalog_items
+def cf_catalog_dp(cli_ctx, dev_center, *_):
+    return cf_devcenter_dataplane(cli_ctx, dev_center).catalogs
 
 
-def cf_catalog_item_version_dp(cli_ctx, dev_center, *_):
-    return cf_devcenter_dataplane(cli_ctx, dev_center).catalog_item_versions
+def cf_environment_definitions_dp(cli_ctx, dev_center, *_):
+    return cf_devcenter_dataplane(cli_ctx, dev_center).environment_definitions
 
 
 def cf_environment_type_dp(cli_ctx, dev_center, *_):
