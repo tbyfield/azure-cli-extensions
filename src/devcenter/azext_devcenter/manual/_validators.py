@@ -3,7 +3,13 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 import re
-from azure.cli.core.azclierror import RequiredArgumentMissingError, InvalidArgumentValueError
+from azure.cli.core.azclierror import (
+    RequiredArgumentMissingError,
+    InvalidArgumentValueError,
+)
+from knack.log import get_logger
+
+logger = get_logger(__name__)
 
 
 def validate_attached_network_or_dev_box_def(namespace):
@@ -26,3 +32,20 @@ def validate_time(namespace):
     validation = pattern.match(namespace.delay_time)
     if validation is None:
         raise InvalidArgumentValueError("--delay-time should be in the format HH:MM")
+
+
+def validate_endpoint(endpoint, dev_center):
+    if endpoint is not None and dev_center is not None:
+        logger.warning(
+            "Both the endpoint and dev-center parameters were provided. Only the endpoint parameter will be used."
+        )
+    if endpoint is not None:
+        check_valid_uri = re.match(
+            r"(https)://.+.*\.(devcenter.azure-test.net|devcenter.azure.com)[/]?$", endpoint
+        )
+        if check_valid_uri is None:
+            raise InvalidArgumentValueError("The endpoint is invalid.")
+    if endpoint is None and dev_center is None:
+        error_message = """Either an endpoint (--endpoint) \
+or dev-center (--dev-center) should be set."""
+        raise RequiredArgumentMissingError(error_message)
